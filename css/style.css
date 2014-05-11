@@ -194,9 +194,9 @@ article .entry blockquote p {
 }
 article .entry code,
 article .entry pre {
-  font-family: Consolas, "Lucida Console", "Courier New", Menlo, Monaco, "Microsoft Yahei", monospace;
+  font-family: Monaco, Bitstream Vera Sans Mono, Lucida Console, Terminal;
   font-size: 0.8em;
-  line-height: 1.3;
+  line-height: 1.6;
 }
 article .entry code {
   background: #eee;
