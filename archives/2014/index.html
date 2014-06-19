@@ -48,6 +48,68 @@
     <header>
       
   
+    <h1 class="title"><a href="/2014/06/19/something-about-nginx-concat/">CentOS nginx 1.6.0 安装 nginx-http-concat 模块的小坑</a></h1>
+  
+
+      
+      <time datetime="2014-06-19T07:16:25.000Z">Jun 19 2014</time>
+      
+    </header>
+    <div class="entry">
+      
+        <p><code>nginx-http-concat</code>是 淘宝 <a href="http://tengine.taobao.org/" target="_blank">tengine</a> 中的一个模块，主要用于拼合静态资源文件，减少HTTP请求。</p>
+<p>用<code>seajs</code>的时候，大部分应用了此模块来做拼合，跟r.js不同把文件拼合放在了服务端，而不是打包过程中。这么一来既保持了模块的颗粒化，又解决了不拼和模块增加的HTTP请求。</p>
+<p>昨天在自己的CentOS的主机上安装<code>nginx-http-concat</code>，<code>nginx</code>版本是1.6.0，看了<code>nginx-http-concat</code>github上的<a href="https://github.com/alibaba/nginx-http-concat" target="_blank">markdown</a>，也就需要重新加入<code>nginx-http-concat</code>后编译下<code>nginx</code>然后更新就OK了。</p>
+<p>官方实例上默认需要配置的参数也就两个：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="code"><pre>
+location <span class="regexp">/static/css/</span> {
+    concat <span class="literal">on</span>;
+    concat_max_files <span class="number">20</span>;
+}
+
+location <span class="regexp">/static/js/</span> {
+    concat <span class="literal">on</span>; 
+    concat_max_files <span class="number">30</span>;
+}
+</pre></td></tr></table></figure>
+
+<p>更新完<code>nginx</code>，修改完<code>nginx.conf</code>，打开浏览器来了个类似的url：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="label">http:</span>//example<span class="preprocessor">.com</span>/static/??a<span class="preprocessor">.js</span>,b<span class="preprocessor">.js</span>
+</pre></td></tr></table></figure>
+
+<p>一直400啊，有木有 - =，文件的MIME也都是<code>application/x-javascript</code>。然后重新编译修改文件路径、插件包路径等等试了试，还是不行。</p>
+<p>最后试一试的态度 <code>concat_types</code> 重新设置了一遍。OK了。。。</p>
+<p>囧啊，之前1.5.2的时候还看过别的配置，<code>concat_types</code>都是有默认值的那。</p>
+<p>后来发现 <a href="https://github.com/alibaba/nginx-http-concat/issues/16" target="_blank">https://github.com/alibaba/nginx-http-concat/issues/16</a> issues中也有人遇到这个问题。</p>
+<p>记录下，一个良好的习惯，多去看看issues帮助解决问题。</p>
+
+      
+    </div>
+    
+      
+    
+  </div>
+</article>
+
+
+
+
+<article class="post">
+  <div class="post-content">
+    <header>
+      
+  
     <h1 class="title"><a href="/2014/05/26/an-introduction-to-the-web-notifications-api/">[译]Web Notifications API （通知API）怎么玩</a></h1>
   
 
@@ -72,12 +134,7 @@
 <ul>
 <li><code>body</code>: 一个用于详细说明通知内容的字符串。</li>
 <li><code>lang</code>: 指定通知的语言。它的值必须符合<a href="http://tools.ietf.org/html/bcp47" target="_blank">BCP 47 standard</a>，比如<code>en-US</code>,<code>it-IT</code>都是个有效的值（中文就是<code>zh-CN</code>啦）。</li>
-<li><code>dir</code>: 定义通知文字的排版方向，它的值可以是:<ul>
-<li><code>auto</code>: 继承浏览器设置</li>
-<li><code>ltr</code>: 由左至右排版（欧洲语言、中文等）</li>
-<li><code>rtl</code>: 由右至左排版（阿拉伯语等）</li>
-</ul>
-</li>
+<li><code>dir</code>: 定义通知文字的排版方向，它的值可以是: <code>auto</code>: 继承浏览器设置，<code>ltr</code>: 由左至右排版（欧洲语言、中文等），<code>rtl</code>: 由右至左排版（阿拉伯语等）</li>
 <li><code>tag</code>: 作为通知ID的一个字符串，可以用来检索、替换或者删除通知。</li>
 <li><code>icon</code>: 定义通知显示的图标，以图片URL形式。</li>
 </ul>
