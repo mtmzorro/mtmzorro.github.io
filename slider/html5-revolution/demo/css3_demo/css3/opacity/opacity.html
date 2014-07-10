@@ -1,0 +1,47 @@
+﻿<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>透明</title>
+<style type="text/css">
+body,h2{padding:0;margin:0;}
+.container{
+	background:url(bg.jpg) no-repeat;
+	height:324px;
+	width:490px;
+	margin-left:auto;
+	margin-right:auto;
+}
+.content{
+	position:relative;
+	top:20px;left:20px;
+	height:284px;width:450px;
+}
+.opacity{
+	background-color:rgba(256,256,256,.5);
+}
+.rgba{
+	background-color:#FFF;
+	opacity: 0.5;
+	-moz-opacity: 0.5;
+	filter:alpha(opacity=5);
+}
+h2{text-align:center;}
+p{text-indent:2em;}
+</style>
+</head>
+<body>
+	<div class="container">
+		<div class="content opacity">
+			<h2>使用Opacity属性设定背景透明</h2>
+			<p>使用opacity属性会把</p>
+		</div>
+	</div>
+	<div class="container">
+		<div class="content rgba">
+			<h2>使用RGBA设定透明度</h2>
+			<p>使用opacity属性会把</p>
+		</div>
+	</div>
+</body>
+</html>

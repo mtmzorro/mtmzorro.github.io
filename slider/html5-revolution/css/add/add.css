@@ -1,0 +1,731 @@
+@charset "UTF-8";
+
+
+.reveal .no-list-style{
+	list-style-type: none;
+}
+.reveal p.p-section,
+.reveal em.p-section{
+	 text-align: left; 
+	 line-height: 1.6em; 
+	 text-indent: 2em;
+}
+.reveal .section-mark{
+	position: absolute;
+	right: -10px;
+	top: -30px;
+	font-size: 20px;
+}
+/**
+* for webkit 
+*/
+::-webkit-scrollbar {
+	height: 13px;
+	overflow: visible;
+	width: 13px
+}
+
+::-webkit-scrollbar-button {
+	height: 0;
+	width: 0
+}
+
+::-webkit-scrollbar-track {
+	background-clip: padding-box;
+	border: solid transparent;
+	border-width: 0 0 0 7px
+}
+
+::-webkit-scrollbar-track:horizontal {
+	border-width: 7px 0 0
+}
+
+::-webkit-scrollbar-track:hover {
+	background-color: rgba(0, 0, 0, .05);
+	box-shadow: inset 1px 1px 0 rgba(0, 0, 0, .1)
+}
+
+::-webkit-scrollbar-track:active {
+	background-color: rgba(0, 0, 0, .05);
+	box-shadow: inset 1px -1px 0 rgba(0, 0, 0, .14), inset -1px 1px 0
+		rgba(0, 0, 0, .07)
+}
+
+::-webkit-scrollbar-track:horizontal:hover {
+	box-shadow: inset -1px 1px 0 rgba(0, 0, 0, .14), inset 1px -1px 0
+		rgba(0, 0, 0, .07)
+}
+
+::-webkit-scrollbar-track:vertical:hover {
+	box-shadow: inset 1px 1px 0 rgba(0, 0, 0, .14), inset -1px -1px 0
+		rgba(0, 0, 0, .07)
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: rgba(0, 0, 0, .2);
+	background-clip: padding-box;
+	border: solid transparent;
+	border-width: 0 0 0 7px;
+	min-height: 28px;
+	padding: 100px 0 0;
+	box-shadow: inset 1px 1px 0 rgba(0, 0, 0, .1), inset -1px -1px 0
+		rgba(0, 0, 0, .07)
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background-color: rgba(0, 0, 0, .4);
+	box-shadow: inset 1px 1px 1px rgba(0, 0, 0, .25)
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+	border-width: 7px 0 0;
+	padding: 0 0 0 100px;
+	box-shadow: inset -1px 1px 0 rgba(0, 0, 0, .1), inset 1px -1px 0
+		rgba(0, 0, 0, .07)
+}
+
+::-webkit-scrollbar-thumb:active {
+	background-color: rgba(0, 0, 0, 0.5);
+	box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.35)
+}
+
+::-webkit-scrollbar-corner {
+	background: transparent
+}
+
+body::-webkit-scrollbar-track-piece {
+	background-clip: padding-box;
+	background-color: #f5f5f5;
+	border: solid #fff;
+	border-width: 0 0 0 1px;
+	box-shadow: inset 1px 0 0 rgba(0, 0, 0, .14), inset -1px 0 0
+		rgba(0, 0, 0, .07)
+}
+
+body::-webkit-scrollbar-track-piece:horizontal {
+	border-width: 3px 0 0;
+	box-shadow: inset 0 1px 0 rgba(0, 0, 0, .14), inset 0 -1px 0
+		rgba(0, 0, 0, .07)
+}
+
+body::-webkit-scrollbar-thumb {
+	background-clip: padding-box;
+	border-width: 1px 1px 1px 1px
+}
+
+body::-webkit-scrollbar-thumb:horizontal {
+	border-width: 1px 1px 1px
+}
+
+body::-webkit-scrollbar-corner {
+	background-clip: padding-box;
+	background-color: #f5f5f5;
+	border: solid #fff;
+	border-width: 0 0 0 3px;
+	box-shadow: inset 1px 1px 0 rgba(0, 0, 0, .14)
+}
+
+div::-webkit-scrollbar {
+	height: 13px;
+	overflow: visible;
+	width: 13px
+}
+
+div::-webkit-scrollbar-thumb {
+	background-color: rgba(0, 0, 0, .2);
+	background-clip: padding-box;
+	border: solid transparent;
+	border-width: 0 0 0 1px;
+	min-height: 28px;
+	padding: 100px 0 0;
+	box-shadow: inset 1px 1px 0 rgba(0, 0, 0, .1), inset -1px -1px 0
+		rgba(0, 0, 0, .07)
+}
+
+div::-webkit-scrollbar-track {
+	background-clip: padding-box;
+	border: solid transparent;
+	border-width: 0 0 0 1px
+}
+
+div::-webkit-scrollbar-track:horizontal {
+	border-width: 1px 0 0
+}
+
+ul::-webkit-scrollbar {
+	height: 13px;
+	overflow: visible;
+	width: 13px
+}
+
+ul::-webkit-scrollbar-thumb {
+	background-color: rgba(0, 0, 0, .2);
+	background-clip: padding-box;
+	border: solid transparent;
+	border-width: 0 0 0 1px;
+	min-height: 28px;
+	padding: 100px 0 0;
+	box-shadow: inset 1px 1px 0 rgba(0, 0, 0, .1), inset -1px -1px 0
+		rgba(0, 0, 0, .07)
+}
+
+ul::-webkit-scrollbar-track {
+	background-clip: padding-box;
+	border: solid transparent;
+	border-width: 0 0 0 1px
+}
+
+ul::-webkit-scrollbar-track:horizontal {
+	border-width: 1px 0 0
+}
+
+/*********************************************
+ * progress-bar
+ *********************************************/
+
+.progress-bar {
+    background-color: #1a1a1a;
+    height: 25px;
+    padding: 5px;
+    width: 60%;
+    margin: 50px auto 0 auto;			
+    -moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+    -moz-box-shadow: 0 1px 5px #000 inset, 0 1px 0 #444;
+	-webkit-box-shadow: 0 1px 5px #000 inset, 0 1px 0 #444;
+	box-shadow: 0 1px 5px #000 inset, 0 1px 0 #444;      
+	text-align: left;    
+	font-size: 0; 
+}
+
+.progress-bar span {
+    display: inline-block;
+    height: 100%;
+	background-color: #777;
+    -moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset;
+	-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset;
+	box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset;
+	-webkit-transition: width 3.4s ease-in-out;
+	-moz-transition: width 3.4s ease-in-out;
+	-ms-transition: width 3.4s ease-in-out;
+	-o-transition: width 3.4s ease-in-out;
+	transition: width 3.4s ease-in-out;		
+}
+
+/*---------------------------*/			
+
+.blue span {
+    background-color: #34c2e3;   
+}
+
+.orange span {
+	  background-color: #fecf23;
+	  background-image: -webkit-gradient(linear, left top, left bottom, from(#fecf23), to(#fd9215));
+	  background-image: -webkit-linear-gradient(top, #fecf23, #fd9215);
+	  background-image: -moz-linear-gradient(top, #fecf23, #fd9215);
+	  background-image: -ms-linear-gradient(top, #fecf23, #fd9215);
+	  background-image: -o-linear-gradient(top, #fecf23, #fd9215);
+	  background-image: linear-gradient(top, #fecf23, #fd9215);  
+}	
+
+.green span {
+	  background-color: #a5df41;
+	  background-image: -webkit-gradient(linear, left top, left bottom, from(#a5df41), to(#4ca916));
+	  background-image: -webkit-linear-gradient(top, #a5df41, #4ca916);
+	  background-image: -moz-linear-gradient(top, #a5df41, #4ca916);
+	  background-image: -ms-linear-gradient(top, #a5df41, #4ca916);
+	  background-image: -o-linear-gradient(top, #a5df41, #4ca916);
+	  background-image: linear-gradient(top, #a5df41, #4ca916);  
+}		
+
+/*---------------------------*/		
+
+.stripes span {
+    -webkit-background-size: 30px 30px;
+    -moz-background-size: 30px 30px;
+    background-size: 30px 30px;			
+	background-image: -webkit-gradient(linear, left top, right bottom,
+						color-stop(.25, rgba(255, 255, 255, .15)), color-stop(.25, transparent),
+						color-stop(.5, transparent), color-stop(.5, rgba(255, 255, 255, .15)),
+						color-stop(.75, rgba(255, 255, 255, .15)), color-stop(.75, transparent),
+						to(transparent));
+    background-image: -webkit-linear-gradient(135deg, rgba(255, 255, 255, .15) 25%, transparent 25%,
+                        transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%,
+                        transparent 75%, transparent);
+    background-image: -moz-linear-gradient(135deg, rgba(255, 255, 255, .15) 25%, transparent 25%,
+                        transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%,
+                        transparent 75%, transparent);
+    background-image: -ms-linear-gradient(135deg, rgba(255, 255, 255, .15) 25%, transparent 25%,
+                        transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%,
+                        transparent 75%, transparent);
+    background-image: -o-linear-gradient(135deg, rgba(255, 255, 255, .15) 25%, transparent 25%,
+                        transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%,
+                        transparent 75%, transparent);
+    background-image: linear-gradient(135deg, rgba(255, 255, 255, .15) 25%, transparent 25%,
+                        transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%,
+                        transparent 75%, transparent);            
+    
+    -webkit-animation: animate-stripes 3s linear infinite;
+    -moz-animation: animate-stripes 3s linear infinite;       		
+}
+
+@-webkit-keyframes animate-stripes { 
+	0% {background-position: 0 0;} 100% {background-position: 60px 0;}
+}
+
+
+@-moz-keyframes animate-stripes {
+	0% {background-position: 0 0;} 100% {background-position: 60px 0;}
+}
+
+/*---------------------------*/	 
+
+.shine span {
+	position: relative;
+}
+
+.shine span::after {
+	content: '';
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: #fff;
+    -moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;			
+	
+    -webkit-animation: animate-shine 2s ease-out infinite;
+    -moz-animation: animate-shine 2s ease-out infinite; 			
+}
+
+@-webkit-keyframes animate-shine { 
+	0% {opacity: 0; width: 0;}
+	50% {opacity: .5;}
+	100% {opacity: 0; width: 95%;}
+}
+
+
+@-moz-keyframes animate-shine {
+	0% {opacity: 0; width: 0;}
+	50% {opacity: .5;}
+	100% {opacity: 0; width: 95%;}
+}
+
+/*---------------------------*/	 
+
+.glow span {
+    -moz-box-shadow: 0 5px 5px rgba(255, 255, 255, .7) inset, 0 -5px 5px rgba(255, 255, 255, .7) inset;
+	-webkit-box-shadow: 0 5px 5px rgba(255, 255, 255, .7) inset, 0 -5px 5px rgba(255, 255, 255, .7) inset;
+	box-shadow: 0 5px 5px rgba(255, 255, 255, .7) inset, 0 -5px 5px rgba(255, 255, 255, .7) inset;
+	
+    -webkit-animation: animate-glow 1s ease-out infinite;
+    -moz-animation: animate-glow 1s ease-out infinite; 			
+}
+
+@-webkit-keyframes animate-glow {
+ 0% { -webkit-box-shadow: 0 5px 5px rgba(255, 255, 255, .7) inset, 0 -5px 5px rgba(255, 255, 255, .7) inset;} 
+ 50% { -webkit-box-shadow: 0 5px 5px rgba(255, 255, 255, .3) inset, 0 -5px 5px rgba(255, 255, 255, .3) inset;} 
+ 100% { -webkit-box-shadow: 0 5px 5px rgba(255, 255, 255, .7) inset, 0 -5px 5px rgba(255, 255, 255, .7) inset;}
+ }
+
+@-moz-keyframes animate-glow {
+ 0% { -moz-box-shadow: 0 5px 5px rgba(255, 255, 255, .7) inset, 0 -5px 5px rgba(255, 255, 255, .7) inset;} 
+ 50% { -moz-box-shadow: 0 5px 5px rgba(255, 255, 255, .3) inset, 0 -5px 5px rgba(255, 255, 255, .3) inset;} 
+ 100% { -moz-box-shadow: 0 5px 5px rgba(255, 255, 255, .7) inset, 0 -5px 5px rgba(255, 255, 255, .7) inset;}
+ }
+
+
+.macbook {
+  width: 150px;
+  height: 96px;
+  position: absolute;
+  font-size: 12px;
+  line-height: normal;
+  color: #FFF;
+  left: 50%;
+  top: 30%;
+  margin: 20px 0 0 -68px;
+  -webkit-perspective: 500px;
+}
+.macbook img{
+	border: 0 none;
+	box-shadow: 0 none;
+}
+.shadow {
+  position: absolute;
+  width: 60px;
+  height: 0px;
+  left: 40px;
+  top: 160px;
+  -webkit-transform: rotateX(80deg) rotateY(0deg) rotateZ(0deg);
+  box-shadow: 0 0 60px 40px rgba(0,0,0,0.3);
+  -webkit-animation: shadow infinite 7s ease;
+}
+.inner {
+  z-index: 20;
+  position: absolute;
+  width: 150px;
+  height: 96px;
+  left: 0;
+  top: 0;
+  -webkit-transform-style: preserve-3d;
+  -webkit-transform:rotateX(-20deg) rotateY(0deg) rotateZ(0deg);
+  -webkit-animation: rotate infinite 7s ease;
+}
+.screen {
+  width: 150px;
+  height: 96px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  border: 0 none;
+  border-radius: 7px;
+  background: #ddd;
+  -webkit-transform-style: preserve-3d;
+  -webkit-transform-origin: 50% 93px;
+  -webkit-transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+  -webkit-animation: lid-screen infinite 7s ease;
+  background-image: linear-gradient(45deg, rgba(0,0,0,0.34) 0%,rgba(0,0,0,0) 100%);
+  background-position: left bottom;
+  background-size: 300px 300px;
+  box-shadow: inset 0 3px 7px rgba(255,255,255,0.5);
+}
+.screen .logo {
+  position: absolute;
+  border: 0 none;
+  box-shadow: 0 ;
+  width: 20px;
+  height: 24px;
+  left: 50%;
+  top: 50%;
+  margin: -12px 0 0 -10px;
+  -webkit-transform: rotateY(180deg) translateZ(0.1px);
+}
+.screen .face-one {
+  width: 150px;
+  height: 96px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  border-radius: 7px;
+  background: #d3d3d3;
+  -webkit-transform: translateZ(2px);
+  background-image: linear-gradient(45deg,rgba(0,0,0,0.24) 0%,rgba(0,0,0,0) 100%);
+}
+.screen .face-one .camera {
+  width: 3px;
+  height: 3px;
+  border-radius: 100%;
+  background: #000;
+  position: absolute;
+  left: 50%;
+  top: 4px;
+  margin-left: -1.5px;
+}
+.screen .face-one .display {
+  width: 130px;
+  height: 74px;
+  margin: 10px;
+  background: url("http://brkcan.net/fun/codepen/macbookss.png") no-repeat center center #000;
+  border-radius: 1px;
+  position: relative;
+  box-shadow: inset 0 0 2px rgba(0,0,0,1);
+}
+.screen .face-one .display .shade {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 130px;
+  height: 74px;
+  background: linear-gradient(-135deg, rgba(255,255,255,0) 0%,rgba(255,255,255,0.1) 47%,rgba(255,255,255,0) 48%);
+  -webkit-animation: screen-shade infinite 7s ease;
+  background-size: 300px 200px;
+  background-position: 0px 0px;
+}
+.screen .face-one span {
+  position: absolute;
+  top: 85px;
+  left: 57px;
+  font-size: 6px;
+  color: #666
+}
+
+.body {
+  width: 150px;
+  height: 96px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  border-radius: 7px;
+  background: #cbcbcb;
+  -webkit-transform-style: preserve-3d;
+  -webkit-transform-origin: 50% bottom;
+  -webkit-transform: rotateX(-90deg);
+  -webkit-animation: lid-body infinite 7s ease;
+  background-image: linear-gradient(45deg, rgba(0,0,0,0.24) 0%,rgba(0,0,0,0) 100%);
+}
+.body .face-one {
+  width: 150px;
+  height: 96px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  border-radius: 7px;
+  -webkit-transform-style: preserve-3d;
+  background: #dfdfdf;
+  -webkit-animation: lid-keyboard-area infinite 7s ease;
+  -webkit-transform: translateZ(-2px);
+  background-image: linear-gradient(30deg, rgba(0,0,0,0.24) 0%,rgba(0,0,0,0) 100%);
+}
+.body .touchpad {
+  width: 40px;
+  height: 31px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: 4px;
+  margin: -44px 0 0 -18px;
+  background: #cdcdcd;
+  background-image: linear-gradient(30deg, rgba(0,0,0,0.24) 0%,rgba(0,0,0,0) 100%);
+  box-shadow: inset 0 0 3px #888;
+}
+.body .keyboard {
+width: 130px;
+height: 45px;
+position: absolute;
+left: 7px;
+top: 41px;
+border-radius: 4px;
+-webkit-transform-style: preserve-3d;
+background: #cdcdcd;
+background-image: linear-gradient(30deg, rgba(0,0,0,0.24) 0%,rgba(0,0,0,0) 100%);
+box-shadow: inset 0 0 3px #777;
+padding: 0 0 0 2px;
+}
+.keyboard .key {
+  width: 6px;
+  height: 6px;
+  background: #444;
+  float: left;
+  margin: 1px;
+  -webkit-transform: translateZ(-2px);
+  border-radius: 2px;
+  box-shadow: 0 -2px 0 #222;
+  -webkit-animation: keys infinite 7s ease;
+}
+.key.space {
+  width: 45px;
+}
+.key.f {
+  height: 3px;
+}
+.body .pad {
+  width: 5px;
+  height: 5px;
+  background: #333;
+  border-radius: 100%;
+  position: absolute;
+}
+.pad.one {
+  left: 20px;
+  top: 20px;
+}
+.pad.two {
+  right: 20px;
+  top: 20px;
+}
+.pad.three {
+  right: 20px;
+  bottom: 20px;
+}
+.pad.four {
+  left: 20px;
+  bottom: 20px;
+}
+
+@-webkit-keyframes rotate {
+  0% {
+    -webkit-transform: rotateX(-20deg) rotateY(0deg) rotateZ(0deg);
+  }
+  5% {
+    -webkit-transform: rotateX(-20deg) rotateY(-20deg) rotateZ(0deg);
+  }
+  20% {
+    -webkit-transform: rotateX(30deg) rotateY(200deg) rotateZ(0deg);
+  }
+  25% {
+    -webkit-transform: rotateX(-60deg) rotateY(150deg) rotateZ(0deg);
+  }
+  60% {
+    -webkit-transform: rotateX(-20deg) rotateY(130deg) rotateZ(0deg);
+  }
+  65% {
+    -webkit-transform: rotateX(-20deg) rotateY(120deg) rotateZ(0deg);
+  }
+  80% {
+    -webkit-transform: rotateX(-20deg) rotateY(375deg) rotateZ(0deg);
+  }
+  85% {
+    -webkit-transform: rotateX(-20deg) rotateY(357deg) rotateZ(0deg);
+  }
+  87% {
+    -webkit-transform: rotateX(-20deg) rotateY(360deg) rotateZ(0deg);
+  }
+  100% {
+    -webkit-transform: rotateX(-20deg) rotateY(360deg) rotateZ(0deg);
+  }
+}
+
+@-webkit-keyframes lid-screen {
+  0% {
+    -webkit-transform: rotateX(0deg);
+    background-position: left bottom;
+  }
+  5% {
+    -webkit-transform: rotateX(50deg);
+    background-position: left bottom;
+  }
+  20% {
+    -webkit-transform: rotateX(-90deg);
+    background-position: -150px top;
+  }
+  25% {
+    -webkit-transform: rotateX(15deg);
+    background-position: left bottom;
+  }
+  30% {
+    -webkit-transform: rotateX(-5deg);
+    background-position: right top;
+  }
+  38% {
+    -webkit-transform: rotateX(5deg);
+    background-position: right top;
+  }
+  48% {
+    -webkit-transform: rotateX(0deg);
+    background-position: right top;
+  }
+  90% {
+    -webkit-transform: rotateX(0deg);
+    background-position: right top;
+  }
+  100% {
+    -webkit-transform: rotateX(0deg);
+    background-position: right center;
+  }
+}
+
+@-webkit-keyframes lid-body {
+  0% {
+    -webkit-transform: rotateX(-90deg);
+    
+  }
+  50% {
+    -webkit-transform: rotateX(-90deg);
+    
+  }
+  100% {
+    -webkit-transform: rotateX(-90deg);
+    
+  }
+}
+
+@-webkit-keyframes lid-keyboard-area {
+  0% {
+     background-color: #dfdfdf;
+  }
+  50% {
+    background-color: #bbb;
+  }
+  100% {
+    background-color: #dfdfdf;
+  }
+}
+@-webkit-keyframes screen-shade {
+  0% {
+    background-position: -20px 0px;
+  }
+  5% {
+    background-position: -40px 0px;
+  }
+  20% {
+    background-position: 200px 0;
+  }
+  50% {
+    background-position: -200px 0;
+  }
+  80% {
+    background-position: 0px 0px;
+  }
+  85% {
+    background-position: -30px 0;
+  }
+  90% {
+    background-position: -20px 0;
+  }
+  100% {
+    background-position: -20px 0px;
+  }
+}
+@-webkit-keyframes keys {
+  0% {
+    box-shadow: 0 -2px 0 #222;
+  }
+  5% {
+    box-shadow: 1 -1px 0 #222;
+  }
+  20% {
+    box-shadow: -1px 1px 0 #222;
+  }
+  25% {
+    box-shadow: -1px 1px 0 #222;
+  }
+  60% {
+    box-shadow: -1px 1px 0 #222;
+  }
+  80% {
+    box-shadow: 0 -2px 0 #222;
+  }
+  85% {
+    box-shadow: 0 -2px 0 #222;
+  }
+  87% {
+    box-shadow: 0 -2px 0 #222;
+  }
+  100% {
+    box-shadow: 0 -2px 0 #222;
+  }
+}
+@-webkit-keyframes shadow {
+  0% {
+    -webkit-transform: rotateX(80deg) rotateY(0deg) rotateZ(0deg);
+    box-shadow: 0 0 60px 40px rgba(0,0,0,0.3);
+  }
+  5% {
+    -webkit-transform: rotateX(80deg) rotateY(10deg) rotateZ(0deg);
+    box-shadow: 0 0 60px 40px rgba(0,0,0,0.3);
+  }
+  20% {
+    -webkit-transform: rotateX(30deg) rotateY(-20deg) rotateZ(-20deg);
+    box-shadow: 0 0 50px 30px rgba(0,0,0,0.3);
+  }
+  25% {
+    -webkit-transform: rotateX(80deg) rotateY(-20deg) rotateZ(50deg);
+    box-shadow: 0 0 35px 15px rgba(0,0,0,0.1);
+  }
+  60% {
+    -webkit-transform: rotateX(80deg) rotateY(0deg) rotateZ(-50deg) translateX(30px);
+    box-shadow: 0 0 60px 40px rgba(0,0,0,0.3);
+  }
+  100% {
+    box-shadow: 0 0 60px 40px rgba(0,0,0,0.3);
+  }
+}
+

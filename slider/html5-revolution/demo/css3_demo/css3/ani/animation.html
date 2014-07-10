@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8" />
+<title>CSS3 box-shadow</title>
+<meta name="description" content="CSS3 box-shadow" />
+<meta name="keywords" content="css3,CSS3 box-shadow,box-shadow,阴影" />
+<meta name="author" content="doyoe(飘零雾雨), dooyoe@gmail.com" />
+<!--[if lte IE 8]>
+<script src="../../lib/html5.js"></script>
+<![endif]-->
+<link href="../../skin/reset-grids-comm-min.css" rel="stylesheet" />
+<link href="../../skin/layout.css" rel="stylesheet" />
+<link href="../../skin/demo.css" rel="stylesheet" />
+<style>
+li{margin-left:2em;}
+li>strong{margin-right:1em;}
+</style>
+</head>
+<body class="doc">
+<nav id="nav">
+  <a href="http://blog.doyoe.com/" title="CSS探索之旅 - 飘零雾雨的庄园">CSS探索之旅</a> &#187;
+  <a href="http://demo.doyoe.com/" title="Web前端实验室">Web前端实验室</a> &#187;
+  CSS3 box-shadow
+</nav>
+
+<article id="content">
+<h1 class="title">Animation(动画)</h1>
+<ul><li><strong>animation-name</strong>动画的名称。</li>
+<li><strong>animation-duration</strong>定义动画播放一次需要的时间。默认为0；</li>
+<li><strong>animation-timing-function</strong>定义动画播放的方式，参数设置类似transition-timing-function</li>
+<li><strong>animation-delay</strong>定义动画开始的时间</li>
+<li><strong>animation-iteration-count</strong>定义循环的次数，infinite即为无限次。默认是1。</li>
+<li><strong>-webkit-animation-direction</strong>动画播放的方向，两个值，默认为normal，这个时候动画的每次循环都向前播放。另一个值是alternate，则第偶数次向前播放，第奇数次向反方向播放。</li>
+</ul>
+<pre>#rotate {
+ margin:0 auto;
+ width:600px;
+ height:400px;
+ /* 确保我们是在一个 3-D 空间 */
+ -webkit-transform-style:preserve-3d;
+ /*让整个行使用x-轴旋转、7秒中的动画、无限次播放以及线性 */
+ -webkit-animation-name:x-spin;
+ -webkit-animation-duration:7s;
+ -webkit-animation-iteration-count:infinite;
+ -webkit-animation-timing-function:linear;
+} 
+/* 定义要调用的动画 */
+ @-webkit-keyframes x-spin {
+ 0% { -webkit-transform:rotateX(0deg); }
+ 50% { -webkit-transform:rotateX(180deg); }
+ 100% { -webkit-transform:rotateX(360deg); }
+}
+</pre>
+</article>
+</body>
+</html>

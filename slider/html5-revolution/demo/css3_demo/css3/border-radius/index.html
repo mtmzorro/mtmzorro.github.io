@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8" />
+<title>CSS3 border-radius</title>
+<meta name="description" content="CSS3 border-radius" />
+<meta name="keywords" content="css3,css3 border-radius,border-radius,radius,圆角" />
+<meta name="author" content="doyoe(飘零雾雨), dooyoe@gmail.com" />
+<!--[if lte IE 8]>
+<script src="../../lib/html5.js"></script>
+<![endif]-->
+<link href="../../skin/reset-grids-comm-min.css" rel="stylesheet" />
+<link href="../../skin/layout.css" rel="stylesheet" />
+<link href="../../skin/demo.css" rel="stylesheet" />
+<style>
+section{
+	padding:20px;
+	border:3px solid #000;
+}
+#border-radius{
+	border-radius:10px;
+}
+#border-top-left-radius{
+	border-top-left-radius:10px;
+}
+#border-top-right-radius{
+	border-top-right-radius:10px;
+}
+#border-bottom-right-radius{
+	border-bottom-right-radius:10px;
+}
+#border-bottom-left-radius{
+	border-bottom-left-radius:10px;
+}
+#border-irregular-radius{
+	border-top-left-radius:20px 50px;
+}
+#border-circle-radius{
+	width:200px;
+	height:200px;
+	padding:0;
+	border-radius:100px;
+}
+pre{background-color:transparent;}
+</style>
+</head>
+<body class="doc">
+<nav id="nav">
+	<a href="http://blog.doyoe.com/" title="CSS探索之旅 - 飘零雾雨的庄园">CSS探索之旅</a> &#187;
+	<a href="http://demo.doyoe.com/" title="Web前端实验室">Web前端实验室</a> &#187;
+	CSS3 border-radius
+</nav>
+
+<article id="content">
+	<h1 class="title">border-radius 边框圆角:</h1>
+	<p class="browser">浏览器参照基准：Firefox3.6 and Later, Chrome5 and Later, Safari5 and Later, Opera10.53 and Later, IE9.0 and Later</p>
+	<h2 class="subtitle">全圆角：</h2>
+	<section id="border-radius">
+	<pre><code>#border-radius{
+	border-radius:10px;
+}</code></pre>
+	</section>
+	<h2 class="subtitle">左上圆角：</h2>
+	<section id="border-top-left-radius">
+	<pre><code>#border-top-left-radius{
+	border-top-left-radius:10px;
+}</code></pre>
+	</section>
+	<h2 class="subtitle">右上圆角：</h2>
+	<section id="border-top-right-radius">
+	<pre><code>#border-top-right-radius{
+	border-top-right-radius:10px;
+}</code></pre>
+	</section>
+	<h2 class="subtitle">右下圆角：</h2>
+	<section id="border-bottom-right-radius">
+	<pre><code>#border-bottom-right-radius{
+	border-bottom-right-radius:10px;
+}</code></pre>
+	</section>
+	<h2 class="subtitle">左下圆角：</h2>
+	<section id="border-bottom-left-radius">
+	<pre><code>#border-bottom-left-radius{
+	border-bottom-left-radius:10px;
+}</code></pre>
+	</section>
+	<h2 class="subtitle">不规则圆角：</h2>
+	<section id="border-irregular-radius">
+	<pre><code>#border-irregular-radius{
+	border-top-left-radius:20px 50px;
+}</code></pre>
+	</section>
+	<h2 class="subtitle">圆角的一个小变通（画圆）：</h2>
+	<section id="border-circle-radius">
+	<pre><code>#border-circle-radius{
+	width:200px;
+	height:200px;
+	border-radius:100px;
+}</code></pre>
+	</section>
+</article>
+
+<p class="copyright">&copy; Copyright <a href="http://www.doyoe.com/" title="飘雨社区">Doyoe.com</a></p>
+<a id="sources" href="http://blog.doyoe.com/" title="前往 CSS探索之旅">CSS探索之旅</a>
+<script src="../../lib/coderinder.js"></script>
+</body>
+</html>

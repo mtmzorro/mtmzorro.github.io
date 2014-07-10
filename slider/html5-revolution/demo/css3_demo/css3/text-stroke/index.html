@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8" />
+<title>CSS3 text-stroke</title>
+<meta name="description" content="CSS3 text-stroke" />
+<meta name="keywords" content="css3,text-stroke,CSS3 text-stroke,文字描边" />
+<meta name="author" content="doyoe(飘零雾雨), dooyoe@gmail.com" />
+<!--[if lte IE 8]>
+<script src="http://developer.doyoe.com/dui/lib/js/html5.js"></script>
+<![endif]-->
+<link href="http://developer.doyoe.com/dui/lib/css/reset-grids-comm-min.css" rel="stylesheet" />
+<link href="../../skin/layout.css" rel="stylesheet" />
+<link href="../../skin/demo.css" rel="stylesheet" />
+<style>
+.grammar{
+	padding:0 20px;
+	border:0 none;
+	color:#666;
+	font-weight:bold;
+	font-size:16px;
+}
+.panel dl:nth-child(2) dd{
+	line-height:1.231;
+	font-size:60px;
+	font-weight:bold;
+}
+#panel1 dl:nth-child(2) dd{
+	-webkit-text-stroke:1px #f00;
+}
+#panel2 dl:nth-child(2) dd{
+	-webkit-text-stroke:1px transparent;
+}
+</style>
+</head>
+<body class="doc">
+<nav id="nav">
+	<a href="http://blog.doyoe.com/" title="CSS探索之旅 - 飘零雾雨的庄园">CSS探索之旅</a> &#187;
+	<a href="http://demo.doyoe.com/" title="Web前端实验室">Web前端实验室</a> &#187;
+	CSS3 text-stroke
+</nav>
+
+<article id="content">
+	<h1 class="title">CSS3 text-stroke:</h1>
+	<p class="browser">浏览器参照基准：Webkit Only</p>
+	<h2 class="subtitle">语法：</h2>
+	<section class="grammar">
+	text-stroke：&lt;text-stroke-width&gt; &lt;text-stroke-color&gt;
+	</section>
+	<h2 class="subtitle">想象一个红色描边的文字：</h2>
+	<section id="panel1" class="panel">
+		<dl class="view">
+			<dt>代码</dt>
+			<dd><pre><code>text-stroke: 1px #f00;</code></pre></dd>
+		</dl>
+		<dl class="view">
+			<dt>效果</dt>
+			<dd>红色描边的文字</dd>
+		</dl>
+		<p class="tips">* text-stroke是符合属性，可以分拆为text-stroke-width和text-stroke-color两个属性</p>
+	</section>
+</article>
+
+<p class="copyright">&copy; Copyright <a href="http://www.doyoe.com/" title="飘雨社区">Doyoe.com</a></p>
+<a id="sources" href="http://blog.doyoe.com/" title="前往 CSS探索之旅">CSS探索之旅</a>
+<!--Google Analytics-->
+<script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-3500471-3']);
+_gaq.push(['_trackPageview']);
+(function() {
+    var ga = document.createElement('script'); ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8" />
+<title>CSS3镂空文字效果</title>
+<meta name="description" content="CSS3镂空文字效果" />
+<meta name="keywords" content="css,css3,text-fill-color,镂空文字" />
+<meta name="author" content="Joy Du(飘零雾雨), dooyoe@gmail.com" />
+<meta name="copyright" content="www.doyoe.com" />
+<meta name="robots" content="all" />
+<!--[if lte IE 8]>
+<script src="http://developer.doyoe.com/dui/lib/js/html5.js"></script>
+<![endif]-->
+<link href="http://developer.doyoe.com/dui/lib/css/reset-grids-comm-min.css" rel="stylesheet" />
+<link href="../../skin/layout.css" rel="stylesheet" />
+<link href="../../skin/demo.css" rel="stylesheet" />
+<style>
+html,body{
+	background:#000;
+	color:#fff;
+	font:bold 14px/1.5 georgia,sans-serif;
+}
+#demo p{
+	width:800px;
+	margin:30px auto;
+	-webkit-text-fill-color:transparent;
+	-webkit-text-stroke:1px #fff;
+	font-size:126px;
+}
+</style>
+</head>
+<body>
+<nav id="nav">
+	<a href="http://blog.doyoe.com/" title="CSS探索之旅 - 飘零雾雨的庄园">CSS探索之旅</a> &#187;
+	<a href="http://demo.doyoe.com/" title="Web前端实验室">Web前端实验室</a> &#187;
+	text-fill-color demos
+</nav>
+
+<div id="demo">
+	<p>镂空了的文字</p>
+</div>
+
+<p class="info">See The Demo With Webkit Browser</p>
+<p class="copyright">&copy; Copyright <a href="http://www.doyoe.com/" title="飘雨社区">Doyoe.com</a></p>
+<a id="sources" href="http://blog.doyoe.com/" title="前往 CSS探索之旅">CSS探索之旅</a>
+<!--Google Analytics-->
+<script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-3500471-3']);
+_gaq.push(['_trackPageview']);
+(function() {
+    var ga = document.createElement('script'); ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+</body>
+</html>

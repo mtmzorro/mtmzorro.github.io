@@ -1,0 +1,29 @@
+@charset utf-8;
+/* index page */
+#index #hd{
+	height:30px;
+}
+#index header#hd h1{
+	margin-top:50px;
+}
+#index header#hd h1{
+	-moz-transition:all .5s ease-in-out;
+	-webkit-transition:all .5s ease-in-out;
+	-o-transition:all .5s ease-in-out;
+	-ms-transition:all .5s ease-in-out;
+	transition:all .5s ease-in-out;
+	background:url(css3.svg) no-repeat right;
+}
+
+.css3{
+	float:right;
+	margin-right:45px;
+}
+
+a[href^="http://"]:after,a[href^="https://"]:after{
+	content:"";position:absolute;
+	width:10px; height:10px;
+	background:no-repeat url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAVklEQVR4Xn3PgQkAMQhDUXfqTu7kTtkpd5RA8AInfArtQ2iRXFWT2QedAfttj2FsPIOE1eCOlEuoWWjgzYaB/IkeGOrxXhqB+uA9Bfcm0lAZuh+YIeAD+cAqSz4kCMUAAAAASUVORK5CYII=);}
+a[href^="http://"],a[href^="https://"]{
+	margin-right:10px;
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8" />
+<title>CSS3 transform</title>
+<meta name="description" content="CSS3 box-shadow" />
+<meta name="keywords" content="css3,CSS3 box-shadow,box-shadow,阴影" />
+<meta name="author" content="doyoe(飘零雾雨), dooyoe@gmail.com" />
+<!--[if lte IE 8]>
+<script src="../../lib/html5.js"></script>
+<![endif]-->
+<link href="../../skin/reset-grids-comm-min.css" rel="stylesheet" />
+<link href="../../skin/layout.css" rel="stylesheet" />
+<link href="../../skin/demo.css" rel="stylesheet" />
+<style>
+section{
+  padding:10px;
+  border:1px solid #aaa;
+}
+li{margin-left:2em;}
+pre{
+  padding:0 20px;
+  border:0 none;
+  color:#666;
+  font-weight:bold;
+  font-size:16px;
+}
+li>strong{margin-right:1em;}
+
+</style>
+</head>
+<body class="doc">
+<nav id="nav">
+  <a href="http://blog.doyoe.com/" title="CSS探索之旅 - 飘零雾雨的庄园">CSS探索之旅</a> &#187;
+  <a href="http://demo.doyoe.com/" title="Web前端实验室">Web前端实验室</a> &#187;
+  CSS3 box-shadow
+</nav>
+
+<article id="content">
+<h1 class="title">CSS 变形(Transformation)</h1>
+<h2 class="subtitle">语法</h2>
+<pre class="grammar">
+transform: none|<i>transform-functions</i>;</pre>
+<strong>常见类型归纳：</strong>
+<ul>
+  <li><strong>rotate</strong>Rotate(旋转)允许你通过传递一个度数值来转动一个对象。</li>
+  <li><strong>scale</strong>Scale是一个缩放功能，可以让任一元素变的更大。它使用正数和负数以及小数作为参数。</li>
+  <li><strong>translate</strong>Translate就是基于X和Y 坐标重新定位元素</li>
+  <li><strong>skew</strong>顾名思义，skew就是要将对象倾斜，参数是度数</li>
+  <li><strong>matrix</strong>transform支持矩阵变换，就是基于X和Y 坐标重新定位元素</li>
+</ul>
+<h2 class="subtitle">Rotate(旋转)</h2>
+<pre>#nav{
+    -webkit-transform:rotate(-90deg);
+    -moz-transform:rotate(-90deg);
+    -o-transform:rotate(-90deg);
+    filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+  </pre><div>请注意在IE8中(非标准模式)它需要你写成"-ms-filter"而不是"filter"。</div><h2 class="subtitle">scale(缩放)</h2><pre>#nav{  
+    /* nav的宽度将是双倍，并且水平翻转，但是高度保持不变 */
+    -webkit-transform:scale(-2, 1);
+    -moz-transform:scale(-2, 1);
+    -o-transform:scale(-2, 1);
+}
+  </pre><div>负数值并不会缩小元素，而是翻转它(比如，文字被反转)然后相应的缩放它。</div>
+  <h2 class="subtitle">translate(重新定位)<a href="transform-translate.html">点击查看实例</a></h2>
+  <pre>#nav{
+    /* 这会将nav元素向左移动10像素并向下移动20像素 */
+    -moz-transform:translate(10px, 20px);
+    -webkit-transform:translate(10px, 20px);
+    -o-transform:translate(10px, 20px);
+}
+  </pre>
+  <h2 class="subtitle">Skew(倾斜)</h2><pre>#nav{
+  /* 这会将nav元素向左移动10像素并向下移动30像素 */
+  -moz-transform:skew(30deg, -10deg);
+  -webkit-transform:skew(30deg, -10deg);
+  -o-transform:skew(30deg, -10deg);
+}
+  </pre>
+  <h2 class="subtitle">Matrix(矩阵变换)</h2>
+</article>
+</body>
+</html>

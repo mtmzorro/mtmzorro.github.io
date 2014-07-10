@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8" />
+<title>CSS3 text-fill-color</title>
+<meta name="description" content="CSS3 text-fill-color" />
+<meta name="keywords" content="css3,text-fill-color,CSS3 text-fill-color,文字填充色" />
+<meta name="author" content="doyoe(飘零雾雨), dooyoe@gmail.com" />
+<!--[if lte IE 8]>
+<script src="http://developer.doyoe.com/dui/lib/js/html5.js"></script>
+<![endif]-->
+<link href="http://developer.doyoe.com/dui/lib/css/reset-grids-comm-min.css" rel="stylesheet" />
+<link href="../../skin/layout.css" rel="stylesheet" />
+<link href="../../skin/demo.css" rel="stylesheet" />
+<style>
+.grammar{
+	padding:0 20px;
+	border:0 none;
+	color:#666;
+	font-weight:bold;
+	font-size:16px;
+}
+.panel dl:nth-child(2) dd,.panel dl:nth-child(4) dd{
+	font-size:20px;
+	font-weight:bold;
+}
+#panel1 dl:nth-child(2) dd{
+	-webkit-text-fill-color:#f00;
+	color:#000;
+}
+#panel2 dl:nth-child(2) dd{
+	-webkit-text-fill-color:transparent;
+	-webkit-text-stroke:1px #000;
+	font-size:50px;
+}
+#panel3 dl:nth-child(2) dd{
+	background-image:-webkit-linear-gradient(#eee,#000);
+	-webkit-background-clip:text;
+	-webkit-text-fill-color:transparent;
+	font-size:50px;
+}
+#panel3 dl:nth-child(4) dd{
+	background-image:-webkit-linear-gradient(#eee,#000);
+	-webkit-background-clip:text;
+	-webkit-text-fill-color:transparent;
+	-webkit-text-stroke:1px transparent;
+	font-size:50px;
+}
+</style>
+</head>
+<body class="doc">
+<nav id="nav">
+	<a href="http://blog.doyoe.com/" title="CSS探索之旅 - 飘零雾雨的庄园">CSS探索之旅</a> &#187;
+	<a href="http://demo.doyoe.com/" title="Web前端实验室">Web前端实验室</a> &#187;
+	CSS3 text-fill-color
+</nav>
+
+<article id="content">
+	<h1 class="title">CSS3 text-fill-color:</h1>
+	<p class="browser">浏览器参照基准：Webkit Only</p>
+	<h2 class="subtitle">语法：</h2>
+	<section class="grammar">
+	text-fill-color：&lt;color&gt;
+	</section>
+	<h2 class="subtitle">text-fill-color会覆盖color所定义的字体颜色：</h2>
+	<section id="panel1" class="panel">
+		<dl class="view">
+			<dt>代码</dt>
+			<dd><pre><code>text-fill-color:#f00;
+color:#000;</code></pre></dd>
+		</dl>
+		<dl class="view">
+			<dt>效果</dt>
+			<dd>如果你的浏览器支持text-fill-color，将看到我是红色</dd>
+		</dl>
+		<p class="tips">* 在webkit下你将看到红色的文字</p>
+	</section>
+	<h2 class="subtitle">text-fill-color打造镂空文字：</h2>
+	<section id="panel2" class="panel">
+		<dl class="view">
+			<dt>代码</dt>
+			<dd><pre><code>-webkit-text-fill-color:transparent;
+-webkit-text-stroke:1px #000;</code></pre></dd>
+		</dl>
+		<dl class="view">
+			<dt>效果</dt>
+			<dd>未定义text-stroke-color的文字</dd>
+		</dl>
+	</section>
+	<h2 class="subtitle">text-stroke-color透明值让文字更柔和：</h2>
+	<section id="panel3" class="panel">
+		<dl class="view">
+			<dt>代码</dt>
+			<dd><pre><code>background-image:-webkit-linear-gradient(#eee,#000);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;</code></pre></dd>
+		</dl>
+		<dl class="view">
+			<dt>效果1</dt>
+			<dd>Gradient图像填充的文字</dd>
+		</dl>
+		<dl class="view">
+			<dt>代码</dt>
+			<dd><pre><code>background-image:-webkit-linear-gradient(#eee,#000);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+-webkit-text-stroke:1px transparent;</code></pre></dd>
+		</dl>
+		<dl class="view">
+			<dt>效果2</dt>
+			<dd>Gradient图像填充的文字</dd>
+		</dl>
+		<p class="tips">* 对比你会发现效果2中的文字比效果1更柔和一点</p>
+	</section>
+</article>
+
+<p class="copyright">&copy; Copyright <a href="http://www.doyoe.com/" title="飘雨社区">Doyoe.com</a></p>
+<a id="sources" href="http://blog.doyoe.com/" title="前往 CSS探索之旅">CSS探索之旅</a>
+<!--Google Analytics-->
+<script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-3500471-3']);
+_gaq.push(['_trackPageview']);
+(function() {
+    var ga = document.createElement('script'); ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+</body>
+</html>

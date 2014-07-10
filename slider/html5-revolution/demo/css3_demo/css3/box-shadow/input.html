@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8" />
+<title>CSS3 box-shadow文本框聚焦效果</title>
+<meta name="description" content="CSS3 box-shadow" />
+<meta name="keywords" content="css3,CSS3 box-shadow,box-shadow,阴影,focus,焦点" />
+<meta name="author" content="doyoe(飘零雾雨), dooyoe@gmail.com" />
+<!--[if lte IE 8]>
+<script src="../../lib/html5.js"></script>
+<![endif]-->
+<link href="../../skin/reset-grids-comm-min.css" rel="stylesheet" />
+<link href="../../skin/layout.css" rel="stylesheet" />
+<link href="../../skin/demo.css" rel="stylesheet" />
+<style>
+pre{background:none;}
+div{
+	padding:5px 0;
+}
+.enter{
+	width:400px;
+	padding:4px 3px 5px;
+	border:1px solid #999;
+	-moz-border-radius:3px;
+	border-radius:3px;
+	-moz-box-shadow:inset 1px 1px 2px rgba(0,0,0,.2);     /* For Firefox3.6+ */
+	-webkit-box-shadow:inset 1px 1px 2px rgba(0,0,0,.2);  /* For Chrome5+, Safari5+ */
+	box-shadow:inset 1px 1px 2px rgba(0,0,0,.2);          /* For Latest Opera */
+	background-color:#fff;
+	color:#666;
+}
+.enter:hover{
+	-moz-box-shadow:inset 1px 1px 3px rgba(0,0,0,.3);     /* For Firefox3.6+ */
+	-webkit-box-shadow:inset 1px 1px 3px rgba(0,0,0,.3);  /* For Chrome5+, Safari5+ */
+	box-shadow:inset 1px 1px 3px rgba(0,0,0,.3);          /* For Latest Opera */
+}
+.enter:focus{
+	outline:none;
+	-moz-box-shadow:0 0 5px rgba(0,0,0,.5);     /* For Firefox3.6+ */
+	-webkit-box-shadow:0 0 5px rgba(0,0,0,.5);  /* For Chrome5+, Safari5+ */
+	box-shadow:0 0 5px rgba(0,0,0,.5);          /* For Latest Opera */
+}
+</style>
+</head>
+<body class="doc">
+<nav id="nav">
+	<a href="http://blog.doyoe.com/" title="CSS探索之旅 - 飘零雾雨的庄园">CSS探索之旅</a> &#187;
+	<a href="http://demo.doyoe.com/" title="Web前端实验室">Web前端实验室</a> &#187;
+	CSS3 box-shadow文本框聚焦效果
+</nav>
+
+<article id="content">
+	<h1 class="title">CSS3 box-shadow:</h1>
+	<p class="browser">浏览器参照基准：Firefox4 and Later, Chrome5 and Later, Safari5 and Later, Opera10.53 and Later, IE9.0 and Later</p>
+	<p class="tips">* 用你的鼠标点击下面2个输入框试试看</p>
+	<h2 class="subtitle">input输入框：</h2>
+	<div>
+		<input type="text" class="enter" />
+	</div>
+	<h2 class="subtitle">textarea输入框：</h2>
+	<div>
+		<textarea rows="5" cols="50" class="enter"></textarea>
+	</div>
+</article>
+
+<p class="copyright">&copy; Copyright <a href="http://www.doyoe.com/" title="飘雨社区">Doyoe.com</a></p>
+<a id="sources" href="http://blog.doyoe.com/" title="前往 CSS探索之旅">CSS探索之旅</a>
+</body>
+</html>

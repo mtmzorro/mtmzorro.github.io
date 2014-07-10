@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+    body{font:12px/150% Arial,Verdana,"宋体b8b\4f53";}
+    dt {
+        float: left;
+        margin: 100px;
+        position: relative;
+        padding-right: 17px;
+        cursor: pointer;
+    }
+    dt b {
+        position: absolute;
+        right: 0;
+        top: 5px;
+
+        border-width: 8px 8px;
+        border-style: solid;
+        border-color:transparent;
+        border-top-color: #ccc;
+
+        width: 0;
+        height: 0;
+        font-size: 0;
+        line-height: 0;
+
+        -webkit-transition: -webkit-transform 0.2s ease-in;
+        -moz-transition:    -moz-transform 0.2s ease-in;
+        -o-transition:      -o-transform 0.2s ease-in;
+        transition:         transform 0.2s ease-in;
+    }
+    dt:hover b,
+    dt.hover b {
+        -webkit-transform-origin: 50% 20%;
+        -moz-transform-origin:    50% 20%;
+        -o-transform-origin:      50% 20%;
+        transform-origin:         50% 20%;
+
+        -webkit-transform:        rotate(180deg);
+        -moz-transform:           rotate(180deg);
+        -o-transform:             rotate(180deg);
+        transform:                rotate(180deg);
+        
+        filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+        top:    -8px/9;
+    }
+
+
+</style>
+</head>
+<body>
+<dt class="ld">
+    特色栏目
+    <b></b>
+</dt>
+<script>
+var ua = navigator.userAgent,
+    m,
+    ie = 0,
+    el = document.getElementsByClassName('ld')[0];
+
+if ((m = ua.match(/MSIE\s([^;]*)/)) && m[1]) {
+    ie = m[1];
+}
+
+if (ie && el) {
+    el.onmouseenter = function() {
+        this.className = 'hover';
+    };
+    el.onmouseleave = function() {
+        this.className = '';
+    };
+}
+</script>
+</body>
+</html>
