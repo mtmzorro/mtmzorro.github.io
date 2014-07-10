@@ -1,0 +1,51 @@
+/**
+ * css3lib\
+ *
+ * thanks: 
+ * http://bourbon.io/
+ * https://github.com/thomas-mcdonald/bootstrap-sass/blob/master/vendor/assets/stylesheets/bootstrap/_mixins.scss
+ * https://github.com/marvin1023/sassCore/blob/master/core/_css3.scss
+ */
+@-webkit-keyframes pulse {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale(1); }
+
+  50% {
+    opacity: 0.7;
+    -webkit-transform: scale(0.9); }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1); } }
+
+@-moz-keyframes pulse {
+  0% {
+    opacity: 1;
+    -moz-transform: scale(1); }
+
+  50% {
+    opacity: 0.7;
+    -moz-transform: scale(0.9); }
+
+  100% {
+    opacity: 1;
+    -moz-transform: scale(1); } }
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+    transform: scale(1); }
+
+  50% {
+    opacity: 0.7;
+    transform: scale(0.9); }
+
+  100% {
+    opacity: 1;
+    transform: scale(1); } }
+
+.ss {
+  -webkit-transform: rotate(-4deg) translate(6px, 18px) scale(1);
+  -moz-transform: rotate(-4deg) translate(6px, 18px) scale(1);
+  transform: rotate(-4deg) translate(6px, 18px) scale(1); }
