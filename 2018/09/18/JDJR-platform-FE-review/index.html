@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="author" content="zchengsite, 1451426471@qq.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+  <title>JDJR-京东金融平台前端技术体系回顾 | MT_Engine</title>
+
+  
+    <link rel="apple-touch-icon" href="/images/avatar.jpg">
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  <!-- <link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css"> -->
+  <!-- use jsdelivr CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/css/base.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/iconfont/iconfont.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/css/github-markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/css/highlight.css">
+
+  <!-- jquery3.3.1 -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+
+  <!-- fancybox -->
+  <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
+  <script async src="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.js"></script>
+  <!-- <script src="/js/fancybox.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/js/fancybox.js"></script>
+
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-50852091-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-50852091-1');
+    </script>
+  
+
+</head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/"><img src="/images/avatar.jpg" alt=""></a>
+    <div class="nickname"><a href="/about/">mTmzorro</a></div>
+    <div class="self-tag"><a href="/about/">前端手艺人/科技产品爱好者/军迷/Gamer/折腾家</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">主页</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">归档</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">标签</a>
+        </li>
+      
+        <li class="nav-item" data-path="/guestbook/">
+          <a href="/guestbook/">留言</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">关于</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+<!-- <script src="/js/activeNav.js"></script> -->
+<script src="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/js/activeNav.js"></script>
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">JDJR-京东金融平台前端技术体系回顾</div>
+      <div class="post-attach">
+        <span class="post-pubtime">2018-09-18</span>
+        
+          <span class="post-tags">
+            <i class="iconfont icon-tags" title="标签 | tags"></i>
+            
+            <span class="span--tag">
+              <a href="/tags/回顾/" title="查看 回顾 标签">
+                #回顾
+              </a>
+            </span>
+            
+            <span class="span--tag">
+              <a href="/tags/技术体系/" title="查看 技术体系 标签">
+                #技术体系
+              </a>
+            </span>
+            
+          </span>
+        
+        
+          <span class="post-categories">
+            <i class="iconfont icon-bookmark" title="类别 | categories"></i>
+            
+            <span class="span--category">
+              <a href="/categories/Coding/" title="查看 Coding 分类">
+                #Coding
+              </a>
+            </span>
+            
+          </span>
+        
+      </div>
+      <div class="markdown-body">
+        <h2 id="起始"><a href="#起始" class="headerlink" title="起始"></a>起始</h2><p>2014年左右，金融这块的业务已经起步了一段时间了，京小贷、白条等第一版产品也已经发布。业务的扩张也意味着人员需求量的不断加大，当时还在负责京东搜索、首页等相关项目的我决定加入金融这个新的团队。</p>
+<p>初到团队后经过一番对前后端项目的了解，发现很多项目前后端耦合严重，问题诸多：</p>
+<ul>
+<li>前后端人员在同一个项目中开发，边界模糊，静态资源同属后端项目</li>
+<li>缺少编码规范、缺少开发流程规范</li>
+<li>缺少工程自动化流程、质量保证仍靠手动检查</li>
+</ul>
+<p>经过一番和现有开发人员的讨论，共同决定对现有前端相关技术栈和开发流程进行一次梳理，并最终形成规范推行。这个想法也获得了后端团队相关负责人的支持，随着业务扩展、项目不断扩张，前后端不解耦对于后端团队质量控制和管理影响也很大。</p>
+<h2 id="分析原则"><a href="#分析原则" class="headerlink" title="分析原则"></a>分析原则</h2><p>进入调研分析阶段后广泛的学习了一些现有团队的技术架构和开发流程，同时学习交流的过程中也意识到了选型调研的一些基础原则要比技术本身更重要，技术毕竟是为业务和团队服务。</p>
+<p><strong>业务方面</strong>，业务类型、业务目标用户、发展趋势</p>
+<ul>
+<li>业务类型：ToB or ToC？运营活动？</li>
+<li>目标用户：对内 or 对外？</li>
+<li>发展趋势：前瞻性分析，长期产品？短期临时项目？</li>
+</ul>
+<p>当时金融业务在发展阶段，企业相关 ToB 的京小贷等为主力方向，随后随着白条、理财、众筹等业务的兴起 ToC 业务占有比例开始大规模上升，同时附带一些运营活动。ToB 20%，ToC 60%，运营 20%。目标用户大部分为外部用户，挺少维护内部系统。</p>
+<p>ToC 业务占比上升，且大部分项目以中长期为主，允许设计业务和UI组件化抽离，故计划采用 Seajs CMD作为组件模块化方案，将跨业务通用组件提炼成公共 Unit 库、UI 相关逐步开发 Cube UI。</p>
+<p><strong>团队方面</strong>，团队现有技术积累和工具、人员配置、现有项目维护</p>
+<ul>
+<li>技术积累和工具：分析现有技术栈使用情况，尽量使用现有公司统一工具和系统</li>
+<li>人员配置：分析人员特长偏好，适当重新调整负责内容底层 or 业务方向</li>
+<li>现有项目维护：分析现有项目继续维护和迁移升级成本</li>
+</ul>
+<p>技术上基于原生 Javascript 和 jQuery 开发，但需要统一开发思路和制定编码规范、开发流程规范；内部也有 JDF、J-ONE等前端工程化、项目发布工具尽量复用现有工具，降低开发成本。</p>
+<p>人员上将散落在各个项目中的人员逐步收回，按业务BU、技术方向重新分工。</p>
+<p>团队内项目部分已经开发迭代过一些版本了，有一定的历史包袱，不能贸然进行迁移升级，考虑在项目产品迭代更新时逐步迁移分离。</p>
+<h2 id="第一次升级"><a href="#第一次升级" class="headerlink" title="第一次升级"></a>第一次升级</h2><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gi3g9mifl7j31pe0qoq95.jpg" alt></p>
+<p>第一次体系设计我将项目流程划分为了开发阶段、工程化编译阶段、部署阶段。其中开发阶段又分为模块化底层、Base层、组件层、业务层。</p>
+<p><strong>模块化</strong>：</p>
+<p>在当时Web端流行的 AMD、CMD 方案中，我们选择了 CMD 方案 Seajs，依赖就近、按需加载，同时配合 nginx-http-conact 拼合模块请求。</p>
+<p><strong>Base层</strong>：</p>
+<p>主要由全站公用的底层接口封装、Utils、基础产品导航列表等组成，配合头尾系统模板推送，后期涉及近百个子业务系统，统一管理整站基础配置。</p>
+<p><strong>组件层</strong>：</p>
+<p>Unit 内由一些跨业务公用组件组成，如：JD通用联合登陆、推荐组件等；Cube UI 为整站通用UI 组件实现，配合 UDC 部门平台相关设计师共同完成，主要涵盖主要基础 UI 组件，按照 CMD 标准在全站实现模块化按需导入。在后期，随着产品线扩展，开始对通用业务场景进行梳理，输出场景化组件 Demo，方便快速应对不同场景。</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghvd39cgxoj31f80u0gu1.jpg" alt></p>
+<p><strong>业务层</strong>：</p>
+<p>ToC 的产品除了一些流程型模块，独立化设计的趋势越来越明显，完全用 UI 标准化来限制不太现实。</p>
+<p>流程型模块，主要遵从 Cube UI 为基础。独立化设计的产品我们通过 Demo Lib 来进行预收集和整理，将一些前端偏设计、动效方面的方案规整在一个站点，方便和UI 团队进行交流配合，最大限度的对一些视觉方面的应用进行复用。</p>
+<p><strong>代码质量</strong>：</p>
+<p>前期选择了 JSHint，随着 ESlint的不断发展，后期转向 ESlint 。</p>
+<p><strong>工程化 编译</strong></p>
+<p>JDF 为前身所在团队研发的前端自动化工程工具，同时在部分项目中基于Gulp也实现了一个简易版，方便 JDF 覆盖不到的项目实现前端自动化工程。</p>
+<p><strong>部署、线上</strong></p>
+<p>J-ONE CI、JCloud、JD CDN 均为公司内部已有工具，尽量复用现有工具，降低成本。UBA、JD-Flow 为业务埋点点击量等分析系统。部分重点项目接入UMP、Logbook，对接口、页面可用性根据调用次数、可用率、TP三个维度等值进行预警，Logbook用于分析错误日志和自定义日志。</p>
+<h2 id="业务扩张的问题"><a href="#业务扩张的问题" class="headerlink" title="业务扩张的问题"></a>业务扩张的问题</h2><p>时间来到了 2016-2017，此时的前端届发展日新月异，React、Vue 等发展势头正盛。公司业务扩展也在加大，产品线也上升近一倍，尤其是 ToB 侧项目数量快速增加，外加支付等原有项目也开始走出去，每一个项目都开始追求独特化，之前的技术架构已经很难满足当时的业务发展需要。</p>
+<p>当时又按照之前的思路梳理了下业务和团队：</p>
+<p><strong>业务方面</strong>：产品线拓展至京东支付、企业金融、理财、消费金融、股票、保险、平台创新等，每条主产品线下至少有4个以上的子业务。对内对外均开始涉及，大部分都有长期化的趋势。</p>
+<p><strong>团队方面</strong>：前后端 Team 人数不对等现象加剧，技术储备和选型也开始加入 React、Vue、Avalon、Electron、Typescript、Express、Koa2等</p>
+<p>怎么样在尽量的满足标准化又同时支持这么多业务的独特性？这里我想法是：<strong>场景化技术体系</strong>，其实场景化架构所输出的场景化组件解决方案在之前的部分业务中已经开始尝试，这里是将架构也开始场景化，对于不同业务需求，一些偏底层的选型也开始做出改变。</p>
+<h2 id="场景化升级"><a href="#场景化升级" class="headerlink" title="场景化升级"></a>场景化升级</h2><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghv0nhfx94j30u00uqti1.jpg" style="zoom:50%;"></p>
+<p>在不同的业务场景里面，参考之前的分析原则，需要综合考虑业务和团队各方要素，随着业务的发展来优化技术体系。这其中我主要坚持一下要点：</p>
+<ul>
+<li><strong>渐进增强</strong>：场景中技术体系选择，从MVP（最小化可用产品）开始，渐进增加复杂度，随着业务产品发展再进行升级，拥有中期前瞻性。</li>
+<li><strong>不过度设计</strong>：根据业务和场景选择最合适的技术，不能为了技术而技术，选择设计出适合当前业务背景、目标用户、开发时效的解决方案即可。</li>
+</ul>
+<h3 id="支付场景"><a href="#支付场景" class="headerlink" title="支付场景"></a>支付场景</h3><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghvd3ewqbyj31zq0t2tp3.jpg" alt></p>
+<p>在 16-17 年时，随着支付相关业务扩张京东收银台所支持的支付方式、支付营销不断增加，旧版收银台代码堆叠填坑的维护方式已经很难在维持下去，代码维护人也多次转手。</p>
+<p>当时考虑使用 React 或者 Vue 对整体代码进行一次重构，只是当时硬性要求PC还需要对 IE8 15% 左右用户量的进行支持，Vue 的 Polyfill 也不甚完善。于是转向了 Avalon 这个轻量 MVVM 框架，支持双向绑定、支持组件化继承，并且甚至支持到 IE6。后期随着 Avalon 维护减弱、IE8用户量的下降，这部分代码在 18 年开始向比较接近的 Vue 转变。</p>
+<h3 id="小程序场景"><a href="#小程序场景" class="headerlink" title="小程序场景"></a>小程序场景</h3><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghvd32wvkij31wz0u0x6p.jpg" alt></p>
+<p>京东良研是一个内部孵化项目，也是17年底第一次在小程序方面试水，项目开始时小程序自身还在不断完善，为充分跟上小程序更新节奏，我们决定使用原生小程序开发出 MVP 版本，先在内部跑通产品验证需求可行性。</p>
+<p>随后产品上线业务运行相对稳定后，我开始考虑潜在的跨端需求，继续推动技术体系更新。为了和公司内部移动部门技术栈统一和技术多样性的考量，我更倾向类 React 的方案，只是当时比较成熟的 wepy、mpvue 都是类 vue 的，正当此时从内部团队的是 O2 那边正在开发 Taro (前身是 Nerv) 。经过了解测试后决定将接下来的方向逐步转向 Taro，可惜的是我在18年中离开了金融团队没能执行完体系升级，时至今日 Taro 已经发布1.0.0 beta版本了。</p>
+<h3 id="企业场景"><a href="#企业场景" class="headerlink" title="企业场景"></a>企业场景</h3><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghvdfh041jj31ch0u0wrd.jpg" alt></p>
+<p>企业场景最大的痛点是项目重复性高、项目资源消耗大效率低，所以怎么提高<strong>效率</strong>，将开发人员从重复性的劳动解脱出来是最大的考量。只提供基础组件给企业项目相关后端团队可行性较差，场景化的组件最佳实践可行性更佳。于是在联合 UI UE 部门的共同从企业基础组件做起，梳理了几十个企业流程等常用场景，共同产出了企业平台场景库，80%的企业项目基本都可以通过场景库获得解决方案。</p>
+<p>Electron 的试水也是在这个时候，企业量化平台考虑开发桌面版本，部分量化工具需要在本地完成数据回测、存储等，其他部分 loadURL 线上 web 版本。</p>
+<h3 id="公用技术"><a href="#公用技术" class="headerlink" title="公用技术"></a>公用技术</h3><p>跨出场景以外，其他方面也在完善，不断学习业界新知识。</p>
+<p><strong>语言</strong>方面项目中也开始尝试使用 Typescript 这个 Javascript 的超集，接口、泛型、类型推断、类型检查等很好的弥补了弱类型语言的不足，提高了整体项目的健壮性，配合 VScode 类型接口方法提示也是真香。</p>
+<p><strong>测试</strong>这块对 Mocha、Jest 相关的进行了一些实践，未来也继续纳入技术体系把。</p>
+<p><strong>Node.js</strong>基于 Express、MongoDB将 Demo Lib 进行改造，方便案例数据管理。</p>
+<p><strong>项目管理、联调</strong>开始在项目中广泛使用敏捷看板，进行任务拆分、追踪；前后端联调接口也通过内部 Mock 接口平台降低了后端接口开发周期对前端进度的影响。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>一千个人眼里有一千个哈姆雷特，每个人对技术体系、项目方案的设计选择可能都不尽相同。同时技术的更新也是日新月异，技术没有银弹，还是要坚持自己的原则在合适的时间根据合适的背景做出合适的选择。</p>
+<p>以上也算这么几年在金融一个告别性总结把，技术无止境、学习无边界。</p>
+<p>Live long and prosper.</p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2018/05/06/机动车牌外迁流程/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>PREV</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">2018-09-18</span>
+            
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签 | tags"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/回顾/" title="查看 回顾 标签">
+                    #回顾
+                  </a>
+                </span>
+                
+                <span class="span--tag">
+                  <a href="/tags/技术体系/" title="查看 技术体系 标签">
+                    #技术体系
+                  </a>
+                </span>
+                
+              </span>
+            
+            
+              <span class="post-categories">
+                <i class="iconfont icon-bookmark" title="类别 | categories"></i>
+                
+                <span class="span--category">
+                  <a href="/categories/Coding/" title="查看 Coding 分类">
+                    #Coding
+                  </a>
+                </span>
+                
+              </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2018/12/03/「装机」解决机箱硬盘架共振问题/" target="_self">
+                <span>NEXT</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div class="post-catalog" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#起始"><span class="toc-text">起始</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分析原则"><span class="toc-text">分析原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第一次升级"><span class="toc-text">第一次升级</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#业务扩张的问题"><span class="toc-text">业务扩张的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#场景化升级"><span class="toc-text">场景化升级</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#支付场景"><span class="toc-text">支付场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小程序场景"><span class="toc-text">小程序场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#企业场景"><span class="toc-text">企业场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#公用技术"><span class="toc-text">公用技术</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结语"><span class="toc-text">结语</span></a></li></ol>
+    </div>
+  </div>
+
+  <!-- <script src="/js/catalog.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/js/catalog.js"></script>
+
+
+
+    
+      <div class="comments-container">
+        
+
+
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+
+  <div id="vcomments"></div>
+
+  <script>
+    new Valine({
+      el: '#vcomments',
+      appId: 'kUOr7QeM3HuECQcFmC2xKIxD-gzGzoHsz',
+      appKey: 'rkioF9XeiLygfxEhXSrKilPY',
+      placeholder: 'Welcome!',
+      avatar: 'retro'
+    })
+  </script>
+
+    <style>
+      .comments-container .v .vempty {
+        display: none!important;
+      }
+    </style>
+
+
+
+
+      </div>
+    
+  </div>
+
+  
+        <div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" href="https://github.com/mtmzorro/">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="email" href="mtmzorro@foxmail.com">
+            <i class="iconfont icon-envelope"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="微博" href="http://weibo.com/mtmzorro">
+            <i class="iconfont icon-weibo"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    <div class="footer-more">
+      <a href="https://mtmzorro.com">Copyright © mTmzorro 2020</a>
+    </div>
+  
+    <div class="footer-more">
+      <a href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="back-to-top hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+<!-- <script src="/js/backtotop.js"></script> -->
+<script src="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/js/backtotop.js"></script>
+
+
+    </div>
+  </body>
+</html>

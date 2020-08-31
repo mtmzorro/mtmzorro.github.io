@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="author" content="zchengsite, 1451426471@qq.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+  <title>Typescript 重走常用设计模式（三） | MT_Engine</title>
+
+  
+    <link rel="apple-touch-icon" href="/images/avatar.jpg">
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  <!-- <link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css"> -->
+  <!-- use jsdelivr CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/css/base.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/iconfont/iconfont.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/css/github-markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/css/highlight.css">
+
+  <!-- jquery3.3.1 -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+
+  <!-- fancybox -->
+  <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
+  <script async src="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.js"></script>
+  <!-- <script src="/js/fancybox.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/js/fancybox.js"></script>
+
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-50852091-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-50852091-1');
+    </script>
+  
+
+</head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/"><img src="/images/avatar.jpg" alt=""></a>
+    <div class="nickname"><a href="/about/">mTmzorro</a></div>
+    <div class="self-tag"><a href="/about/">前端手艺人/科技产品爱好者/军迷/Gamer/折腾家</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">主页</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">归档</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">标签</a>
+        </li>
+      
+        <li class="nav-item" data-path="/guestbook/">
+          <a href="/guestbook/">留言</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">关于</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+<!-- <script src="/js/activeNav.js"></script> -->
+<script src="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/js/activeNav.js"></script>
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">Typescript 重走常用设计模式（三）</div>
+      <div class="post-attach">
+        <span class="post-pubtime">2019-03-22</span>
+        
+          <span class="post-tags">
+            <i class="iconfont icon-tags" title="标签 | tags"></i>
+            
+            <span class="span--tag">
+              <a href="/tags/typescript/" title="查看 typescript 标签">
+                #typescript
+              </a>
+            </span>
+            
+            <span class="span--tag">
+              <a href="/tags/javascript/" title="查看 javascript 标签">
+                #javascript
+              </a>
+            </span>
+            
+            <span class="span--tag">
+              <a href="/tags/设计模式/" title="查看 设计模式 标签">
+                #设计模式
+              </a>
+            </span>
+            
+          </span>
+        
+        
+          <span class="post-categories">
+            <i class="iconfont icon-bookmark" title="类别 | categories"></i>
+            
+            <span class="span--category">
+              <a href="/categories/Coding/" title="查看 Coding 分类">
+                #Coding
+              </a>
+            </span>
+            
+          </span>
+        
+      </div>
+      <div class="markdown-body">
+        <blockquote>
+<p>本节主要涉及行为型模式：观察者模式、迭代器模式、状态模式、备忘录模式</p>
+</blockquote>
+<h2 id="行为型模式"><a href="#行为型模式" class="headerlink" title="行为型模式"></a>行为型模式</h2><h3 id="观察者模式-Observer"><a href="#观察者模式-Observer" class="headerlink" title="观察者模式 Observer"></a>观察者模式 Observer</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>定义对象之间的一种一对多依赖关系，使得每当一个对象状态发生改变时，其相关依赖对象皆得到通知并被自动更新。</p>
+<h4 id="示例-UML-类图"><a href="#示例-UML-类图" class="headerlink" title="示例 UML 类图"></a>示例 UML 类图</h4><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1giadifdj5dj31840kg778.jpg" alt></p>
+<h4 id="示例代码实现"><a href="#示例代码实现" class="headerlink" title="示例代码实现"></a>示例代码实现</h4><p>Subject 主题或称发布者接口，是被观察者，可以是类或者接口，这里使用接口。其定义了<code>attach()</code>和<code>detach()</code>方法来用于添加、移除观察者对象，同时还有<code>notifyAllObservers()</code>用于通知观察者们;</p>
+<p>ConcreteSubject 具体的主题，其实现了 Subject ，其内部包含一个<code>observers</code>成员变量用于存储观察者们以及一些变化的数据例如<code>state</code>，当数据状态变化时，调用<code>notifyAllObservers()</code>通知所有观察者；其内部还可以定义一些业务逻辑用于更改状态、发起通知，或者完全供外部调用通知方法并传递参数通知所有观察者;</p>
+<p>Observer，观察者或称订阅者接口，声明了接到更新时的方法<code>update()</code></p>
+<p>ConcreteObserver 具体的观察者，实现了 Observer 中的<code>update()</code>方法，当接到更新通知是执行一定操作。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> Subject &#123;</span><br><span class="line">    attach(state: Observer): <span class="built_in">void</span></span><br><span class="line">    detach(observer: Observer): <span class="built_in">void</span></span><br><span class="line">    notifyAllObservers(): <span class="built_in">void</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> ConcreteSubject <span class="keyword">implements</span> Subject &#123;</span><br><span class="line">    <span class="keyword">private</span> observers: Observer[] = []</span><br><span class="line">    <span class="keyword">public</span> state: <span class="built_in">number</span> = <span class="number">0</span></span><br><span class="line">    <span class="comment">// 添加 Observer 观察者</span></span><br><span class="line">    <span class="keyword">public</span> attach(observer: Observer) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.observers.includes(observer)) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'Observer 观察者已存在'</span>)</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>.observers.push(observer)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 移除 Observer 观察者</span></span><br><span class="line">    <span class="keyword">public</span> detach(observer: Observer) &#123;</span><br><span class="line">        <span class="keyword">const</span> index = <span class="keyword">this</span>.observers.indexOf(observer)</span><br><span class="line">        <span class="keyword">if</span> (index === <span class="number">-1</span>) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'Observer 观察者不存在'</span>)</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">this</span>.observers.splice(index, <span class="number">1</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 通知全部观察者 observers，这里是简单示例，可按需传参给 观察者</span></span><br><span class="line">    <span class="keyword">public</span> notifyAllObservers() &#123;</span><br><span class="line">        <span class="keyword">this</span>.observers.forEach(<span class="function">(<span class="params">observer</span>) =&gt;</span> &#123;</span><br><span class="line">            observer.update(<span class="keyword">this</span>)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 做一些业务 更新 state 在通知全部观察者，当然也可以外部调用传参等灵活应用</span></span><br><span class="line">    <span class="keyword">public</span> doSomething() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Subject: 进行一些业务，将 state 改为2，并通知 Observers 更新'</span>)</span><br><span class="line">        <span class="keyword">this</span>.state = <span class="number">2</span></span><br><span class="line">        <span class="keyword">this</span>.notifyAllObservers()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> Observer &#123;</span><br><span class="line">    update(subject: Subject): <span class="built_in">void</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> ConcreteObserver <span class="keyword">implements</span> Observer &#123;</span><br><span class="line">    <span class="keyword">public</span> name: <span class="built_in">string</span></span><br><span class="line">    <span class="keyword">constructor</span>(<span class="params">name: <span class="built_in">string</span></span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name</span><br><span class="line">      	<span class="comment">// 观察者也可以在构造时传入需要观察的 subject 实例直接订阅</span></span><br><span class="line">      	<span class="comment">// subject.attach(this)</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 订阅后 被通知会执行</span></span><br><span class="line">    <span class="keyword">public</span> update(subject: Subject) &#123;</span><br><span class="line">        <span class="keyword">const</span> concreteSubject = subject <span class="keyword">as</span> ConcreteSubject</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;this.name&#125;</span> 接到更新通知了，最新的 state 是 <span class="subst">$&#123;concreteSubject.state&#125;</span>`</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> subject = <span class="keyword">new</span> ConcreteSubject()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建 observerA 并订阅 subject</span></span><br><span class="line"><span class="keyword">const</span> observerA = <span class="keyword">new</span> ConcreteObserver(<span class="string">'observerA'</span>)</span><br><span class="line">subject.attach(observerA)</span><br><span class="line"><span class="comment">// 创建 observerB 并订阅 subject</span></span><br><span class="line"><span class="keyword">const</span> observerB = <span class="keyword">new</span> ConcreteObserver(<span class="string">'observerB'</span>)</span><br><span class="line">subject.attach(observerB)</span><br><span class="line"><span class="comment">// subject 执行一些业务更新 state</span></span><br><span class="line">subject.doSomething()</span><br><span class="line"></span><br><span class="line"><span class="comment">// console output</span></span><br><span class="line"><span class="comment">// Subject: 进行一些业务，将 state 改为2，并通知 Observers 更新</span></span><br><span class="line"><span class="comment">// observerA 接到更新通知了，最新的 state 是 2</span></span><br><span class="line"><span class="comment">// observerB 接到更新通知了，最新的 state 是 2</span></span><br></pre></td></tr></table></figure>
+<h4 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h4><p>观察者模式使用频率也相当高，诸如 DOM 中事件绑定相关背后都是观察者模式的体现</p>
+<ul>
+<li>当一个对象的改变需要同时改变其他对象时</li>
+<li>当一些对象必须观察其他对象的状态变化来处理自身业务时</li>
+</ul>
+<h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><ul>
+<li>符合开放封闭原则，主题和观察者分离，无需修改原有主题代码就可以增加观察者</li>
+<li>通过定义一个消息通知机制，可以实现展现层和数据层的分离，可以有各式各样的展现层作为具体观察者</li>
+<li>注意防止观察者和主题之间循环调用，防止出现崩溃</li>
+</ul>
+<h3 id="迭代器模式-Iterator"><a href="#迭代器模式-Iterator" class="headerlink" title="迭代器模式 Iterator"></a>迭代器模式 Iterator</h3><h4 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h4><p>提供一种方法顺序一个聚合对象中各个元素，而又不暴露该对象内部表示。</p>
+<h4 id="示例-UML-类图-1"><a href="#示例-UML-类图-1" class="headerlink" title="示例 UML 类图"></a>示例 UML 类图</h4><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1giadl4vxy6j318i0k4q52.jpg" alt></p>
+<h4 id="示例代码实现-1"><a href="#示例代码实现-1" class="headerlink" title="示例代码实现"></a>示例代码实现</h4><p>Iterator 是抽象迭代器接口，定义了访问元素下一个和判断是否有下一个的方法，这是迭代器运行的核心</p>
+<p>ConcreteIterator 是具体的迭代器，实现了 Iterator，其中 index 作为游标来记录当前位置</p>
+<p>Aggregate 是抽象聚合类接口，可以理解为一种 Collection 集合，声明了聚合内部需要返回一个 具体的迭代器实例，类似一个迭代器工厂</p>
+<p>ConcreteAggregate 是具体的聚合类，实现了 Aggregate 内部存储管理聚合数据，并返回一个 ConcreteIterator 具体迭代器</p>
+<p><em>实际前端应用中，可能都会简化这个结构，例如不需要 Aggregate 和 ConcreteAggregate，直接创建 Iterator 来进行数据遍历；将遍历顺序改为倒序等等</em></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Iterator 迭代器接口</span></span><br><span class="line"><span class="keyword">interface</span> Iterator&lt;T&gt; &#123;</span><br><span class="line">    hasNext(): <span class="built_in">boolean</span></span><br><span class="line">    next(): T | <span class="literal">null</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// ConcreteIterator 具体的迭代器</span></span><br><span class="line"><span class="keyword">class</span> ConcreteIterator&lt;T&gt; <span class="keyword">implements</span> Iterator&lt;T&gt; &#123;</span><br><span class="line">    <span class="keyword">protected</span> list: <span class="built_in">Array</span>&lt;T&gt;</span><br><span class="line">    <span class="keyword">protected</span> index: <span class="built_in">number</span></span><br><span class="line">    <span class="keyword">constructor</span>(<span class="params">list: <span class="built_in">Array</span>&lt;T&gt;</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.list = list</span><br><span class="line">        <span class="keyword">this</span>.index = <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> hasNext() &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.index &gt; <span class="keyword">this</span>.list.length - <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125;   </span><br><span class="line">    <span class="keyword">public</span> next() &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.hasNext()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.list[<span class="keyword">this</span>.index++]</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Aggregate 聚合类抽象接口，可以理解为 Collection 集合</span></span><br><span class="line"><span class="comment">// 内部管理集合的数据，并返回一个 具体的迭代器实例，类似一个迭代器工厂</span></span><br><span class="line"><span class="keyword">interface</span> Aggregate&lt;T&gt; &#123;</span><br><span class="line">    createIterator(): Iterator&lt;T&gt;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 具体的聚合类 管理数据并返回一个迭代器实例</span></span><br><span class="line"><span class="keyword">class</span> ConcreteAggregate&lt;T&gt; <span class="keyword">implements</span> Aggregate&lt;T&gt; &#123;</span><br><span class="line">    <span class="keyword">public</span> list: <span class="built_in">Array</span>&lt;T&gt;</span><br><span class="line">    <span class="keyword">constructor</span>(<span class="params">list: <span class="built_in">Array</span>&lt;T&gt;</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.list = list</span><br><span class="line">    &#125;</span><br><span class="line">    createIterator() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ConcreteIterator(<span class="keyword">this</span>.list)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建一个新的数据集合</span></span><br><span class="line"><span class="keyword">const</span> collection = <span class="keyword">new</span> ConcreteAggregate([<span class="string">'h'</span>,<span class="string">'e'</span>,<span class="string">'l'</span>,<span class="string">'l'</span>,<span class="string">'o'</span>])</span><br><span class="line"><span class="keyword">const</span> iterator = collection.createIterator()</span><br><span class="line"><span class="comment">// 使用迭代器来遍历数据</span></span><br><span class="line"><span class="keyword">while</span> (iterator.hasNext()) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(iterator.next())</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// console output</span></span><br><span class="line"><span class="comment">// h</span></span><br><span class="line"><span class="comment">// e</span></span><br><span class="line"><span class="comment">// l</span></span><br><span class="line"><span class="comment">// l</span></span><br><span class="line"><span class="comment">// o</span></span><br></pre></td></tr></table></figure>
+<p><strong>在这里不得不提下 ES6 中的 Iterator</strong>，其主要目的是：</p>
+<ul>
+<li>为诸多的有序集合数据类型提供一个统一的遍历接口</li>
+<li>为 for…of 语法实现循环遍历</li>
+</ul>
+<p>ES6 的 Iterator 存储在所符合数据结构的 <code>Symbol.iterator</code> 属性上，其存储的是个函数，可以用来判断是否为有序集合可以 for…of 遍历。</p>
+<p>比如 执行 <code>String.prototype.[Symbol.iterator]()</code> 返回一个迭代器</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">String</span>.prototype[<span class="built_in">Symbol</span>.iterator]</span><br><span class="line">ƒ [<span class="built_in">Symbol</span>.iterator]() &#123; [native code] &#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">String</span>.prototype[<span class="built_in">Symbol</span>.iterator]()</span><br><span class="line">StringIterator &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>其返回迭代器上也实现了<code>next()</code>方法，其中包含 <code>value</code> 和 <code>done</code>，用来返回值和判断是否遍历结束</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String.prototype[Symbol.iterator]().next()</span><br><span class="line">&#123;value: undefined, done: true&#125;</span><br></pre></td></tr></table></figure>
+<p>具备 Iterator 的数据结构有：</p>
+<p><code>Array, String, Map, Set, TypedArray, 函数的 arguments 入参对象, NodeList</code></p>
+<p><strong>Generator 中也实现了 Iterator</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">testGenerator</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">yield</span> <span class="string">'test'</span></span><br><span class="line">    <span class="keyword">yield</span> <span class="string">'this'</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">'end'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> newTest = testGenerator()</span><br><span class="line">newTest[<span class="built_in">Symbol</span>.iterator]</span><br><span class="line"><span class="comment">// ƒ [Symbol.iterator]() &#123; [native code] &#125;</span></span><br><span class="line"><span class="comment">// 也实现了 Iterator 接口</span></span><br><span class="line"></span><br><span class="line">newTest.next()</span><br><span class="line">&#123;<span class="attr">value</span>: <span class="string">"test"</span>, <span class="attr">done</span>: <span class="literal">false</span>&#125;</span><br><span class="line">newTest.next()</span><br><span class="line">&#123;<span class="attr">value</span>: <span class="string">"this"</span>, <span class="attr">done</span>: <span class="literal">false</span>&#125;</span><br><span class="line">newTest.next()</span><br><span class="line">&#123;<span class="attr">value</span>: <span class="string">"end"</span>, <span class="attr">done</span>: <span class="literal">true</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 也可以 for of 循环去执行</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> item <span class="keyword">of</span> testGenerator()) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(item)</span><br><span class="line">&#125;</span><br><span class="line">VM4093:<span class="number">2</span> test</span><br><span class="line">VM4093:<span class="number">2</span> <span class="keyword">this</span></span><br></pre></td></tr></table></figure>
+<h4 id="适用场景-1"><a href="#适用场景-1" class="headerlink" title="适用场景"></a>适用场景</h4><ul>
+<li>想要为不同的或者未知的数据结构创造一个统一的遍历接口，同时不修改暴露内部数据结构</li>
+<li>想要对聚合对象增加多种迭代遍历方法时</li>
+</ul>
+<h4 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h4><ul>
+<li>符合单一职责原则，各个迭代器都完成自己的独立职责，诸多的遍历代码可以被封装为独立的类</li>
+<li>符合开放封闭原则，无需修改原有数据聚合对象，可增量创建不同的迭代器</li>
+<li>迭代器数量随着目标数据聚合类的增加，一定程度上增加了系统复杂性</li>
+</ul>
+<h3 id="状态模式-State"><a href="#状态模式-State" class="headerlink" title="状态模式 State"></a>状态模式 State</h3><h4 id="概念-2"><a href="#概念-2" class="headerlink" title="概念"></a>概念</h4><p>允许一个对象在其内部状态改变的时候改变它的行为，对象看起来似乎修改了自身所属的类。</p>
+<h4 id="示例-UML-类图-2"><a href="#示例-UML-类图-2" class="headerlink" title="示例 UML 类图"></a>示例 UML 类图</h4><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1giadlv8yc7j31c00ouwho.jpg" alt></p>
+<h4 id="示例代码实现-2"><a href="#示例代码实现-2" class="headerlink" title="示例代码实现"></a>示例代码实现</h4><p>Context 是上下文环境类，保存了一个对具体状态 State 实例的引用，并将和状态相关的行为委托给这个状态实例，当状态改变时其对应的行为方法也在发生对应的改变；</p>
+<p>State 是抽象状态类，抽象了状态应该实现的不同方法，并保存了对 Context 的引用供子类使用，同时一些公用的状态方法可以写在这里；</p>
+<p>NormalState… 这些是具体状态类，他们继承了 State，不同状态各自实现自己的状态方法，而且还能根据 Context 的引用来触发状态改变；</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Context 上下文环境类，示例被实例化成一个蓝光播放器 </span></span><br><span class="line"><span class="keyword">class</span> Context &#123;</span><br><span class="line">    <span class="keyword">private</span> state: State</span><br><span class="line">    <span class="keyword">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.state = <span class="keyword">new</span> NoDiskState(<span class="keyword">this</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> changeState(state: State) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`State 变更为: <span class="subst">$&#123;state.constructor.name&#125;</span>`</span>)</span><br><span class="line">        <span class="keyword">this</span>.state = state</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> insertDisc() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'insertDisc 插入光盘'</span>)</span><br><span class="line">        <span class="keyword">this</span>.changeState(<span class="keyword">new</span> NormalState(<span class="keyword">this</span>))</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> removeDisc() &#123;</span><br><span class="line">        <span class="keyword">this</span>.state.removeDisc()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> play() &#123;</span><br><span class="line">        <span class="keyword">this</span>.state.play()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> playNext() &#123;</span><br><span class="line">        <span class="keyword">this</span>.state.playNext()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 抽象状态类</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="keyword">class</span> State &#123;</span><br><span class="line">    <span class="keyword">protected</span> context: Context</span><br><span class="line">    <span class="keyword">constructor</span>(<span class="params">context: Context</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.context = context</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">abstract</span> play(): <span class="built_in">void</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">abstract</span> playNext(): <span class="built_in">void</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">abstract</span> removeDisc(): <span class="built_in">void</span></span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">// 正常状态</span></span><br><span class="line"><span class="keyword">class</span> NormalState <span class="keyword">extends</span> State &#123;</span><br><span class="line">    <span class="keyword">public</span> play() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'NormalState: 开始播放'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> playNext() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'NormalState: 开始播放 下一个节目'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> removeDisc() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'NormalState: 弹出光盘'</span>)</span><br><span class="line">        <span class="keyword">this</span>.context.changeState(<span class="keyword">new</span> NoDiskState(<span class="keyword">this</span>.context))</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 无光盘状态</span></span><br><span class="line"><span class="keyword">class</span> NoDiskState <span class="keyword">extends</span> State &#123;</span><br><span class="line">    <span class="keyword">public</span> play() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'NoDiskState: 请插入光盘'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> playNext() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'NoDiskState: 无法播放下一首，请插入光盘'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> removeDisc() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'NoDiskState: 已无光盘，请插入光盘'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> bluRayPlayer = <span class="keyword">new</span> Context()</span><br><span class="line">bluRayPlayer.play()</span><br><span class="line">bluRayPlayer.insertDisc()</span><br><span class="line">bluRayPlayer.play()</span><br><span class="line">bluRayPlayer.playNext()</span><br><span class="line">bluRayPlayer.removeDisc()</span><br><span class="line">bluRayPlayer.play()</span><br><span class="line"></span><br><span class="line"><span class="comment">// console output</span></span><br><span class="line"><span class="comment">// NoDiskState: 请插入光盘</span></span><br><span class="line"><span class="comment">// insertDisc 插入光盘</span></span><br><span class="line"><span class="comment">// State 变更为: NormalState</span></span><br><span class="line"><span class="comment">// NormalState: 开始播放</span></span><br><span class="line"><span class="comment">// NormalState: 开始播放 下一个节目</span></span><br><span class="line"><span class="comment">// NormalState: 弹出光盘</span></span><br><span class="line"><span class="comment">// State 变更为: NoDiskState</span></span><br><span class="line"><span class="comment">// NoDiskState: 请插入光盘</span></span><br></pre></td></tr></table></figure>
+<h4 id="适用场景-2"><a href="#适用场景-2" class="headerlink" title="适用场景"></a>适用场景</h4><p>状态模式的应用场景在日常开发中也很常见，大部分地方都有状态的概念，比如：网站文章状态、文件的上传状态等。</p>
+<ul>
+<li>对象需要根据自身状态进行不同的行为，而且状态类型也相当多，具体状态的代码实现也可能频繁变更</li>
+<li>大量的条件语句处理状态时，状态有较多的重复代码，状态模式可以将其抽离到抽象类里</li>
+</ul>
+<h4 id="分析-2"><a href="#分析-2" class="headerlink" title="分析"></a>分析</h4><ul>
+<li>符合单一职责原则，每个状态具体的行为代码相互独立</li>
+<li>符合开放封闭原则，增量增加状态无需修改原有状态和上下文</li>
+<li>注意状态切换相关结构设计，因可以在具体状态中进行状态切换，可能会导致整体结构混乱、链路不清晰</li>
+</ul>
+<h3 id="备忘录模式-Memento"><a href="#备忘录模式-Memento" class="headerlink" title="备忘录模式 Memento"></a>备忘录模式 Memento</h3><h4 id="概念-3"><a href="#概念-3" class="headerlink" title="概念"></a>概念</h4><p>在不破坏封装的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态，这样可以在以后将对象恢复到原先保存的状态。</p>
+<h4 id="示例-UML-类图-3"><a href="#示例-UML-类图-3" class="headerlink" title="示例 UML 类图"></a>示例 UML 类图</h4><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1giadncny7rj317k0lwmzq.jpg" alt></p>
+<h4 id="示例代码实现-3"><a href="#示例代码实现-3" class="headerlink" title="示例代码实现"></a>示例代码实现</h4><p>Originator 为原发器，可以创建一个需要记录自身状态，生成备忘快照的实例，多把编辑器内容区、可视化工具组件等需要保持状态的类设计成原发器；</p>
+<p>Memento 为备忘录，用来存储 Originator 中对应的状态等，其根据原发器需要存储的结构进行设计，额外存储一些时间戳等；</p>
+<p>Caretaker 为负责人，可以理解为历史记录管理器，将 Memento 有序化存储，并按需取出、展示 Memento</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 原发器 可以理解为 Editor 等</span></span><br><span class="line"><span class="keyword">class</span> Originator &#123;</span><br><span class="line">    <span class="keyword">private</span> state: <span class="built_in">string</span></span><br><span class="line">    <span class="keyword">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.state = <span class="string">''</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> saveMemento() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Memento(<span class="keyword">this</span>.state)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> restoreMemento(memento: Memento) &#123;</span><br><span class="line">        <span class="keyword">this</span>.state = memento.getState()</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`Originator: 恢复数据为 <span class="subst">$&#123;this.state&#125;</span>`</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> writeSomething(str: <span class="built_in">string</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.state += str</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`Originator: 修改数据为 <span class="subst">$&#123;this.state&#125;</span>`</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 备忘录 只用来存储和获取状态，根据 Originator 设计</span></span><br><span class="line"><span class="keyword">class</span> Memento &#123;</span><br><span class="line">    <span class="keyword">private</span> state: <span class="built_in">string</span></span><br><span class="line">    <span class="keyword">private</span> date: <span class="built_in">string</span></span><br><span class="line">    <span class="keyword">constructor</span>(<span class="params">state: <span class="built_in">string</span></span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.state = state</span><br><span class="line">        <span class="keyword">this</span>.date = <span class="keyword">new</span> <span class="built_in">Date</span>().toLocaleString()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> getState() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.state</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> getDate() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.date</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 负责人 可以理解为历史记录管理器，记录 Memento，恢复等</span></span><br><span class="line"><span class="keyword">class</span> Caretaker &#123;</span><br><span class="line">    <span class="keyword">private</span> originator: Originator</span><br><span class="line">    <span class="keyword">private</span> mementos: Memento[]</span><br><span class="line">    <span class="keyword">constructor</span>(<span class="params">originator: Originator</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.originator = originator</span><br><span class="line">        <span class="keyword">this</span>.mementos = []</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> save() &#123;</span><br><span class="line">        <span class="keyword">this</span>.mementos.push(<span class="keyword">this</span>.originator.saveMemento())</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> undo() &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.mementos.length === <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">const</span> memento = <span class="keyword">this</span>.mementos.pop() <span class="keyword">as</span> Memento</span><br><span class="line">        <span class="keyword">this</span>.originator.restoreMemento(memento)</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> showHistory() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`Caretaker: 修改历史：`</span>);</span><br><span class="line">        <span class="keyword">this</span>.mementos.forEach(<span class="function">(<span class="params">memento</span>) =&gt;</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;memento.getDate()&#125;</span> - <span class="subst">$&#123;memento.getState()&#125;</span>`</span>)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> editor = <span class="keyword">new</span> Originator()</span><br><span class="line"><span class="keyword">const</span> historyAdmin = <span class="keyword">new</span> Caretaker(editor)</span><br><span class="line"></span><br><span class="line">historyAdmin.save()</span><br><span class="line">editor.writeSomething(<span class="string">'123'</span>)</span><br><span class="line"></span><br><span class="line">historyAdmin.save()</span><br><span class="line">editor.writeSomething(<span class="string">'hello'</span>)</span><br><span class="line"></span><br><span class="line">historyAdmin.showHistory()</span><br><span class="line">historyAdmin.undo()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 原发器 可以理解为 Editor 等,需要记录自身状态，生成备忘快照的类，</span></span><br><span class="line"><span class="keyword">class</span> Originator &#123;</span><br><span class="line">    <span class="keyword">private</span> state: <span class="built_in">string</span></span><br><span class="line">    <span class="keyword">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.state = <span class="string">''</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> saveMemento() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Memento(<span class="keyword">this</span>.state)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> restoreMemento(memento: Memento) &#123;</span><br><span class="line">        <span class="keyword">this</span>.state = memento.getState()</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`Originator: 恢复数据为 <span class="subst">$&#123;this.state&#125;</span>`</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> writeSomething(str: <span class="built_in">string</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.state += str</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`Originator: 修改数据为 <span class="subst">$&#123;this.state&#125;</span>`</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 备忘录 只用了存储和获取状态，根据 Originator 设计</span></span><br><span class="line"><span class="keyword">class</span> Memento &#123;</span><br><span class="line">    <span class="keyword">private</span> state: <span class="built_in">string</span></span><br><span class="line">    <span class="keyword">private</span> date: <span class="built_in">string</span></span><br><span class="line">    <span class="keyword">constructor</span>(<span class="params">state: <span class="built_in">string</span></span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.state = state</span><br><span class="line">        <span class="keyword">this</span>.date = <span class="keyword">new</span> <span class="built_in">Date</span>().toLocaleString()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> getState() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.state</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> getDate() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.date</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 负责人 可以理解为历史记录管理器，记录 Memento，恢复等</span></span><br><span class="line"><span class="keyword">class</span> Caretaker &#123;</span><br><span class="line">    <span class="keyword">private</span> originator: Originator</span><br><span class="line">    <span class="keyword">private</span> mementos: Memento[]</span><br><span class="line">    <span class="keyword">constructor</span>(<span class="params">originator: Originator</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.originator = originator</span><br><span class="line">        <span class="keyword">this</span>.mementos = []</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> save() &#123;</span><br><span class="line">        <span class="keyword">this</span>.mementos.push(<span class="keyword">this</span>.originator.saveMemento())</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> undo() &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.mementos.length === <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">const</span> memento = <span class="keyword">this</span>.mementos.pop() <span class="keyword">as</span> Memento</span><br><span class="line">        <span class="keyword">this</span>.originator.restoreMemento(memento)</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> showHistory() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`Caretaker: 修改历史：`</span>);</span><br><span class="line">        <span class="keyword">this</span>.mementos.forEach(<span class="function">(<span class="params">memento</span>) =&gt;</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;memento.getDate()&#125;</span> - <span class="subst">$&#123;memento.getState()&#125;</span>`</span>)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> editor = <span class="keyword">new</span> Originator()</span><br><span class="line"><span class="keyword">const</span> historyAdmin = <span class="keyword">new</span> Caretaker(editor)</span><br><span class="line"></span><br><span class="line">historyAdmin.save()</span><br><span class="line">editor.writeSomething(<span class="string">'123'</span>)</span><br><span class="line"></span><br><span class="line">historyAdmin.save()</span><br><span class="line">editor.writeSomething(<span class="string">'hello'</span>)</span><br><span class="line"></span><br><span class="line">historyAdmin.showHistory()</span><br><span class="line">historyAdmin.undo()</span><br><span class="line"></span><br><span class="line"><span class="comment">// console output</span></span><br><span class="line"><span class="comment">// Originator: 修改数据为 123</span></span><br><span class="line"><span class="comment">// Originator: 修改数据为 123hello</span></span><br><span class="line"><span class="comment">// Caretaker: 修改历史：</span></span><br><span class="line"><span class="comment">// 2019-3-20 8:38:04 ├F10: PM┤ - </span></span><br><span class="line"><span class="comment">// 2019-3-20 8:38:04 ├F10: PM┤ - 123</span></span><br><span class="line"><span class="comment">// Caretaker: 恢复至上一次编辑内容</span></span><br><span class="line"><span class="comment">// Originator: 恢复数据为 123</span></span><br></pre></td></tr></table></figure>
+<h4 id="适用场景-3"><a href="#适用场景-3" class="headerlink" title="适用场景"></a>适用场景</h4><p>各类涉及到编辑内容的程序都涉及到撤销操作，延伸到游戏存档等都可以涉及到备忘录模式思想的应用</p>
+<ul>
+<li>目标对象需要记录状态快照，按需恢复至之前状态时可以恢复至之前的状态</li>
+</ul>
+<h4 id="分析-3"><a href="#分析-3" class="headerlink" title="分析"></a>分析</h4><ul>
+<li>提供了一种恢复机制，新状态无效或者出问题时恢复至之前的状态</li>
+<li>可以在不破坏对象封装的前提下创建对象的快照</li>
+<li>注意控制备忘录存储大小，比如设置可撤销步骤上限，防止过渡消耗资源</li>
+<li>Javascript 中考虑 Immutable 不可变数据，防止快照中状态被改变</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://www.cnblogs.com/TomXu/archive/2011/12/15/2288411.html" target="_blank" rel="noopener">深入理解JavaScript系列 - 汤姆大叔</a></li>
+<li><a href="https://design-patterns.readthedocs.io/zh_CN/latest/index.html" target="_blank" rel="noopener">图说设计模式</a></li>
+<li><a href="https://juejin.im/post/6844903559671054350#heading-27" target="_blank" rel="noopener">Typescript玩转设计模式 之 对象行为型模式</a></li>
+<li><a href="https://tecknight.xyz/blog/常见设计模式概要及其实践-typescript实现/" target="_blank" rel="noopener">常见设计模式概要及其实践-TypeScript实现</a></li>
+<li><a href="http://c.biancheng.net/design_pattern/" target="_blank" rel="noopener">Java设计模式：23种设计模式全面解析</a></li>
+<li><a href="https://github.com/yueshuiniao/blog/issues/2#" target="_blank" rel="noopener">理解ES6的 Iterator、Iterable、Generator</a></li>
+</ul>
+<h2 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h2><ul>
+<li><a href="/2019/03/22/typescript-design-pattern-1/">Typescript 重走常用设计模式（一）</a></li>
+<li><a href="/2019/03/22/typescript-design-pattern-2/">Typescript 重走常用设计模式（二）</a></li>
+</ul>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2019/03/22/typescript-design-pattern-2/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>PREV</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">2019-03-22</span>
+            
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签 | tags"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/typescript/" title="查看 typescript 标签">
+                    #typescript
+                  </a>
+                </span>
+                
+                <span class="span--tag">
+                  <a href="/tags/javascript/" title="查看 javascript 标签">
+                    #javascript
+                  </a>
+                </span>
+                
+                <span class="span--tag">
+                  <a href="/tags/设计模式/" title="查看 设计模式 标签">
+                    #设计模式
+                  </a>
+                </span>
+                
+              </span>
+            
+            
+              <span class="post-categories">
+                <i class="iconfont icon-bookmark" title="类别 | categories"></i>
+                
+                <span class="span--category">
+                  <a href="/categories/Coding/" title="查看 Coding 分类">
+                    #Coding
+                  </a>
+                </span>
+                
+              </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2019/06/30/重温「三国」电视剧整理记忆一些文臣武将/" target="_self">
+                <span>NEXT</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div class="post-catalog" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#行为型模式"><span class="toc-text">行为型模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#观察者模式-Observer"><span class="toc-text">观察者模式 Observer</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#概念"><span class="toc-text">概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例-UML-类图"><span class="toc-text">示例 UML 类图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码实现"><span class="toc-text">示例代码实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#适用场景"><span class="toc-text">适用场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#分析"><span class="toc-text">分析</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#迭代器模式-Iterator"><span class="toc-text">迭代器模式 Iterator</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#概念-1"><span class="toc-text">概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例-UML-类图-1"><span class="toc-text">示例 UML 类图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码实现-1"><span class="toc-text">示例代码实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#适用场景-1"><span class="toc-text">适用场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#分析-1"><span class="toc-text">分析</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#状态模式-State"><span class="toc-text">状态模式 State</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#概念-2"><span class="toc-text">概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例-UML-类图-2"><span class="toc-text">示例 UML 类图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码实现-2"><span class="toc-text">示例代码实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#适用场景-2"><span class="toc-text">适用场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#分析-2"><span class="toc-text">分析</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#备忘录模式-Memento"><span class="toc-text">备忘录模式 Memento</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#概念-3"><span class="toc-text">概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例-UML-类图-3"><span class="toc-text">示例 UML 类图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#示例代码实现-3"><span class="toc-text">示例代码实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#适用场景-3"><span class="toc-text">适用场景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#分析-3"><span class="toc-text">分析</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相关文章"><span class="toc-text">相关文章</span></a></li></ol>
+    </div>
+  </div>
+
+  <!-- <script src="/js/catalog.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/js/catalog.js"></script>
+
+
+
+    
+      <div class="comments-container">
+        
+
+
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+
+  <div id="vcomments"></div>
+
+  <script>
+    new Valine({
+      el: '#vcomments',
+      appId: 'kUOr7QeM3HuECQcFmC2xKIxD-gzGzoHsz',
+      appKey: 'rkioF9XeiLygfxEhXSrKilPY',
+      placeholder: 'Welcome!',
+      avatar: 'retro'
+    })
+  </script>
+
+    <style>
+      .comments-container .v .vempty {
+        display: none!important;
+      }
+    </style>
+
+
+
+
+      </div>
+    
+  </div>
+
+  
+        <div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" href="https://github.com/mtmzorro/">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="email" href="mtmzorro@foxmail.com">
+            <i class="iconfont icon-envelope"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="微博" href="http://weibo.com/mtmzorro">
+            <i class="iconfont icon-weibo"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    <div class="footer-more">
+      <a href="https://mtmzorro.com">Copyright © mTmzorro 2020</a>
+    </div>
+  
+    <div class="footer-more">
+      <a href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="back-to-top hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+<!-- <script src="/js/backtotop.js"></script> -->
+<script src="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/js/backtotop.js"></script>
+
+
+    </div>
+  </body>
+</html>

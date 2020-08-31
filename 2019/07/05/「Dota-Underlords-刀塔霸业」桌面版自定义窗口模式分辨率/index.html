@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="author" content="zchengsite, 1451426471@qq.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+  <title>「Dota Underlords 刀塔霸业」桌面版自定义窗口模式分辨率 | MT_Engine</title>
+
+  
+    <link rel="apple-touch-icon" href="/images/avatar.jpg">
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  <!-- <link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css"> -->
+  <!-- use jsdelivr CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/css/base.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/iconfont/iconfont.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/css/github-markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/css/highlight.css">
+
+  <!-- jquery3.3.1 -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+
+  <!-- fancybox -->
+  <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
+  <script async src="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.js"></script>
+  <!-- <script src="/js/fancybox.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/js/fancybox.js"></script>
+
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-50852091-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-50852091-1');
+    </script>
+  
+
+</head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/"><img src="/images/avatar.jpg" alt=""></a>
+    <div class="nickname"><a href="/about/">mTmzorro</a></div>
+    <div class="self-tag"><a href="/about/">前端手艺人/科技产品爱好者/军迷/Gamer/折腾家</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">主页</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">归档</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">标签</a>
+        </li>
+      
+        <li class="nav-item" data-path="/guestbook/">
+          <a href="/guestbook/">留言</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">关于</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+<!-- <script src="/js/activeNav.js"></script> -->
+<script src="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/js/activeNav.js"></script>
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">「Dota Underlords 刀塔霸业」桌面版自定义窗口模式分辨率</div>
+      <div class="post-attach">
+        <span class="post-pubtime">2019-07-05</span>
+        
+          <span class="post-tags">
+            <i class="iconfont icon-tags" title="标签 | tags"></i>
+            
+            <span class="span--tag">
+              <a href="/tags/Game/" title="查看 Game 标签">
+                #Game
+              </a>
+            </span>
+            
+          </span>
+        
+        
+          <span class="post-categories">
+            <i class="iconfont icon-bookmark" title="类别 | categories"></i>
+            
+            <span class="span--category">
+              <a href="/categories/杂记/" title="查看 杂记 分类">
+                #杂记
+              </a>
+            </span>
+            
+          </span>
+        
+      </div>
+      <div class="markdown-body">
+        <h3 id="修改初衷"><a href="#修改初衷" class="headerlink" title="修改初衷"></a>修改初衷</h3><p>不想用全屏模式，影响多任务工作娱乐(摸鱼)2K分辨率下，窗口模式只有2560X1440、1920X1080等几档，2560X1440遮挡任务栏，1920X1080窗口文字又太小了。</p>
+<p><strong>希望官方日后能增加分辨率选项，此贴对应目前2019.7.5最新更新测试有效。</strong></p>
+<h3 id="修改方法"><a href="#修改方法" class="headerlink" title="修改方法"></a>修改方法</h3><p><strong>游戏会在关闭时覆盖保存一次用户设置，请先在设置中将相关设置修改为自己需要的，然后关闭游戏再进行配置文件微调。</strong></p>
+<ol>
+<li>Steam 库中右键 Dota Underlords，点击属性。</li>
+<li>在弹出的属性窗口中，点击本地文件tab，点击浏览本地文件。</li>
+<li>按照以下路径<code>game\dac\cfg</code>，进入<code>cfg</code>文件夹。</li>
+<li>用任意工具打开<code>video.txt</code>，找到 <code>setting.defaultres</code> 和 <code>setting.defaultresheight</code> 两个配置项进行修改，<code>setting.defaultres:分辨率宽度</code>、<code>setting.defaultres:分辨率高度</code>。</li>
+<li>如果你想同时打开windows的边框方便使用最小化按钮，将 <code>setting.nowindowborder</code> 的配置项值改为 0。</li>
+<li>保存并关闭文件，启动游戏，查看结果。<blockquote>
+<p>个人2K分辨率下修改游戏窗口分辨率为：2500X1300</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="修改内容-amp-结果如图"><a href="#修改内容-amp-结果如图" class="headerlink" title="修改内容&amp;结果如图"></a>修改内容&amp;结果如图</h3><center><br><img src="https://i.loli.net/2019/08/01/5d4275396717321855.jpg" alt="QQ截图20190705195141.jpg"><br>修改文件内容<br><br><img src="https://i.loli.net/2019/08/01/5d427549374fd95618.jpg" alt="QQ截图20190705193801.jpg"><br>修改窗口效果<br></center>
+
+<h3 id="安全性与风险"><a href="#安全性与风险" class="headerlink" title="安全性与风险"></a>安全性与风险</h3><p>因为要修改用户分辨率设置需要动到基础配置文件。<br>所以哈改别怂，怂别改，修改结果请自行承担。<br>祝各位多多吃鸡，早日上位白色尖塔领主。</p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2019/06/30/重温「三国」电视剧整理记忆一些文臣武将/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>PREV</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">2019-07-05</span>
+            
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签 | tags"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/Game/" title="查看 Game 标签">
+                    #Game
+                  </a>
+                </span>
+                
+              </span>
+            
+            
+              <span class="post-categories">
+                <i class="iconfont icon-bookmark" title="类别 | categories"></i>
+                
+                <span class="span--category">
+                  <a href="/categories/杂记/" title="查看 杂记 分类">
+                    #杂记
+                  </a>
+                </span>
+                
+              </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2020/06/23/Steam-Design-Tools-成功发布了/" target="_self">
+                <span>NEXT</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div class="post-catalog" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#修改初衷"><span class="toc-text">修改初衷</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改方法"><span class="toc-text">修改方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改内容-amp-结果如图"><span class="toc-text">修改内容&amp;结果如图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安全性与风险"><span class="toc-text">安全性与风险</span></a></li></ol>
+    </div>
+  </div>
+
+  <!-- <script src="/js/catalog.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/js/catalog.js"></script>
+
+
+
+    
+      <div class="comments-container">
+        
+
+
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+
+  <div id="vcomments"></div>
+
+  <script>
+    new Valine({
+      el: '#vcomments',
+      appId: 'kUOr7QeM3HuECQcFmC2xKIxD-gzGzoHsz',
+      appKey: 'rkioF9XeiLygfxEhXSrKilPY',
+      placeholder: 'Welcome!',
+      avatar: 'retro'
+    })
+  </script>
+
+    <style>
+      .comments-container .v .vempty {
+        display: none!important;
+      }
+    </style>
+
+
+
+
+      </div>
+    
+  </div>
+
+  
+        <div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" href="https://github.com/mtmzorro/">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="email" href="mtmzorro@foxmail.com">
+            <i class="iconfont icon-envelope"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="微博" href="http://weibo.com/mtmzorro">
+            <i class="iconfont icon-weibo"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    <div class="footer-more">
+      <a href="https://mtmzorro.com">Copyright © mTmzorro 2020</a>
+    </div>
+  
+    <div class="footer-more">
+      <a href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="back-to-top hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+<!-- <script src="/js/backtotop.js"></script> -->
+<script src="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/js/backtotop.js"></script>
+
+
+    </div>
+  </body>
+</html>

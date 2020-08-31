@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="author" content="zchengsite, 1451426471@qq.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+  <title>avalon 实践踩坑记录 | MT_Engine</title>
+
+  
+    <link rel="apple-touch-icon" href="/images/avatar.jpg">
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  <!-- <link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css"> -->
+  <!-- use jsdelivr CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/css/base.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/iconfont/iconfont.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/css/github-markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/css/highlight.css">
+
+  <!-- jquery3.3.1 -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+
+  <!-- fancybox -->
+  <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
+  <script async src="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.js"></script>
+  <!-- <script src="/js/fancybox.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/js/fancybox.js"></script>
+
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-50852091-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-50852091-1');
+    </script>
+  
+
+</head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/"><img src="/images/avatar.jpg" alt=""></a>
+    <div class="nickname"><a href="/about/">mTmzorro</a></div>
+    <div class="self-tag"><a href="/about/">前端手艺人/科技产品爱好者/军迷/Gamer/折腾家</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">主页</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">归档</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">标签</a>
+        </li>
+      
+        <li class="nav-item" data-path="/guestbook/">
+          <a href="/guestbook/">留言</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">关于</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+<!-- <script src="/js/activeNav.js"></script> -->
+<script src="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/js/activeNav.js"></script>
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">avalon 实践踩坑记录</div>
+      <div class="post-attach">
+        <span class="post-pubtime">2017-01-19</span>
+        
+          <span class="post-tags">
+            <i class="iconfont icon-tags" title="标签 | tags"></i>
+            
+            <span class="span--tag">
+              <a href="/tags/MVVM/" title="查看 MVVM 标签">
+                #MVVM
+              </a>
+            </span>
+            
+            <span class="span--tag">
+              <a href="/tags/avalon/" title="查看 avalon 标签">
+                #avalon
+              </a>
+            </span>
+            
+          </span>
+        
+        
+          <span class="post-categories">
+            <i class="iconfont icon-bookmark" title="类别 | categories"></i>
+            
+            <span class="span--category">
+              <a href="/categories/Coding/" title="查看 Coding 分类">
+                #Coding
+              </a>
+            </span>
+            
+          </span>
+        
+      </div>
+      <div class="markdown-body">
+        <h1 id="项目背景"><a href="#项目背景" class="headerlink" title="项目背景"></a>项目背景</h1><ul>
+<li>需要兼容到IE7（根据数据支撑重要说服抛弃IE6）</li>
+<li>上个版本传统 jQuery DOM 开发模式，经过无数手维护已经惨不忍睹</li>
+<li>核心业务流程，可维护性、健壮性要求高</li>
+<li>主要业务逻辑流程单页内完成</li>
+</ul>
+<p>接到这个项目改版规划之后，首先想到的是引入一个 MVVM 框架来解放对 DOM 的操作，上个版本基本就是因为应该其他部门多次插手开发后造成可维护性急剧下降。</p>
+<p>最早是计划使用 VUE + VUEX 来重构此项目（之后确实自己重构了一把），考虑到之前 VUE 项目中对 IE8 以下还是有一些不可控的潜在坑，就把视线转移到了 avalon 这个可以支持到 IE6 的框架上</p>
+<p>事实证明，avalon 很好的完成了此项任务，在业务逻辑增加的前提下，整体项目代码比之前缩减了60%。业务组件模块化拆分复用后整体可维护性也得到了很大提升。先赞一个！</p>
+<p>当然凡事都有相对的一面，此篇文字就主要记录自己在项目过程中的一些问题。</p>
+<h1 id="问题List"><a href="#问题List" class="headerlink" title="问题List"></a>问题List</h1><h2 id="官网提供的-2-2-4-avalon-js-IE8-下报错"><a href="#官网提供的-2-2-4-avalon-js-IE8-下报错" class="headerlink" title="官网提供的 2.2.4 avalon.js IE8 下报错"></a>官网提供的 2.2.4 avalon.js IE8 下报错</h2><p>使用 <a href="https://cdn.staticfile.org/avalon.js/2.2.4/avalon.js" target="_blank" rel="noopener">https://cdn.staticfile.org/avalon.js/2.2.4/avalon.js</a> IE8下一直报错，最后通过到<a href="https://github.com/RubyLouvre/avalon/releases" target="_blank" rel="noopener">avalon github</a>，下载所使用的2.2.4版本自己压缩打包后解决。</p>
+<h2 id="组件slot在-2-2-4-版本中和API文档中表现差异较大"><a href="#组件slot在-2-2-4-版本中和API文档中表现差异较大" class="headerlink" title="组件slot在 2.2.4 版本中和API文档中表现差异较大"></a>组件slot在 2.2.4 版本中和API文档中表现差异较大</h2><ul>
+<li>官方demo 组件 slot <a href="https://segmentfault.com/a/1190000006174092" target="_blank" rel="noopener">https://segmentfault.com/a/1190000006174092</a> 2.1.17版本下就可以 之后的2.2.4 版本中 slot 内外就没有通信方式了（但切换低版本 组件方式就全变）。</li>
+<li>为此专门重写一个 <code>avalon.extendComponent</code> 方法来实现组件的继承和扩展，解决组件复用时局部自定义的需求。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// avalon extendComponent 组件继承扩展</span></span><br><span class="line"><span class="comment">// Thanks aLoNeIT https://github.com/aLoNeIT/flyUI</span></span><br><span class="line">avalon.extendComponent = <span class="function"><span class="keyword">function</span> (<span class="params">sComName, sComParentName, sSettings</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    oDefaults = sSettings.defaults;</span><br><span class="line">    sTemplate = sSettings.template;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> oParent = avalon.components[sComParentName];</span><br><span class="line">    <span class="keyword">if</span> (!oParent) <span class="keyword">return</span>; <span class="comment">//不存在组件则直接退出</span></span><br><span class="line">    sTemplate = sTemplate || <span class="literal">null</span>;</span><br><span class="line">    oDefaults.$parents = &#123;&#125;;</span><br><span class="line">    avalon.each(oParent.defaults, <span class="function"><span class="keyword">function</span> (<span class="params">key, value</span>) </span>&#123;</span><br><span class="line">        oDefaults.$parents[sComParentName + <span class="string">"_"</span> + key] = value;</span><br><span class="line">    &#125;);</span><br><span class="line">    oDefaults.inherited = <span class="function"><span class="keyword">function</span> (<span class="params">sPropertyName, sParentName, oParams</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (avalon.isString(sPropertyName) &amp;&amp; avalon.isString(sParentName) &amp;&amp; <span class="keyword">this</span>.$parents[sParentName + <span class="string">"_"</span> + sPropertyName]) <span class="keyword">return</span> <span class="keyword">this</span>.$parents[sParentName + <span class="string">"_"</span> + sPropertyName];</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> oConfig = &#123; <span class="comment">//子组件配置项</span></span><br><span class="line">        displayName: sComName,</span><br><span class="line">        parentName: sComParentName,</span><br><span class="line">        defaults: oDefaults</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">if</span> (sTemplate) oConfig.template = sTemplate;</span><br><span class="line">    oParent.extend(oConfig);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="IE8一下-直接使用兼容过的JSON-stringfy-处理-avalon对象上的数据可能会返回-undefined"><a href="#IE8一下-直接使用兼容过的JSON-stringfy-处理-avalon对象上的数据可能会返回-undefined" class="headerlink" title="IE8一下 直接使用兼容过的JSON.stringfy 处理 avalon对象上的数据可能会返回 undefined"></a>IE8一下 直接使用兼容过的JSON.stringfy 处理 avalon对象上的数据可能会返回 undefined</h2><p>自定义如下扩展方法去除掉avalon自身对象属性<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// avalon getOriginObject </span></span><br><span class="line"><span class="comment">// 去除avalon对象上原型链方法 用于解决IE8 json stringfy 对象数据时异常</span></span><br><span class="line">avalon.getOriginObject = <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> tempObj = &#123;&#125;;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> data) &#123; </span><br><span class="line">        <span class="keyword">if</span>(data.hasOwnProperty(i))&#123;</span><br><span class="line">            tempObj[i] = data[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> tempObj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="component-中模板只支持最外层一个html闭合结构-同级多个无法渲染"><a href="#component-中模板只支持最外层一个html闭合结构-同级多个无法渲染" class="headerlink" title="component 中模板只支持最外层一个html闭合结构 同级多个无法渲染"></a>component 中模板只支持最外层一个html闭合结构 同级多个无法渲染</h2><p>其实这个问题参考 VUE2.0 也要求组件模板最外层只有一个顶级标签</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// OK </span></span><br><span class="line">avalon.component(<span class="string">'ms-process-quick'</span>, &#123;</span><br><span class="line">        template: <span class="string">'&lt;div&gt;&lt;/div&gt;'</span></span><br><span class="line">&#125;)        </span><br><span class="line">  <span class="comment">// 第二个div不会渲染      </span></span><br><span class="line">avalon.component(<span class="string">'ms-process-quick'</span>, &#123;</span><br><span class="line">        template: <span class="string">'&lt;div&gt;&lt;/div&gt;&lt;div&gt;&lt;/div&gt;'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="for循环的模板中-外层有-class-内部判断时-循环内部的if会出现重复渲染（非必先，排除法才找到问题冲突点）"><a href="#for循环的模板中-外层有-class-内部判断时-循环内部的if会出现重复渲染（非必先，排除法才找到问题冲突点）" class="headerlink" title="for循环的模板中 外层有:class 内部判断时 循环内部的if会出现重复渲染（非必先，排除法才找到问题冲突点）"></a>for循环的模板中 外层有:class 内部判断时 循环内部的if会出现重复渲染（非必先，排除法才找到问题冲突点）</h2><p>如下面的代码，外层class存在判断<code>:class=&quot;@item.setGreyWhenBankInMaintence ? \&#39;\&#39; : \&#39;test\&#39;&quot;</code>，造成<code>&lt;i :if=&quot;@item.debit&quot;&gt;储蓄卡&lt;/i&gt; &lt;i :if=&quot;@item.credit&quot;&gt;信用卡&lt;/i&gt;</code> 重复渲染两次。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'            &lt;li data-order="3" class="pl-item" :class="@item.setGreyWhenBankInMaintence ? \'\' : \'test\'"&gt;'</span>,</span><br><span class="line"><span class="string">'                &lt;span :attr="&#123;id: \'bank-\' + @item.bankCode.toLowerCase()&#125;" class="bank-logo"&gt;&#123;&#123;@item.bankName&#125;&#125;&lt;/span&gt;'</span>,</span><br><span class="line"><span class="string">'                &lt;em class="pl-i-info"&gt;'</span>,</span><br><span class="line"><span class="string">'                   &lt;i :if="@item.debit"&gt;储蓄卡&lt;/i&gt;'</span>,</span><br><span class="line"><span class="string">'                   &lt;i :if="@item.credit"&gt;信用卡&lt;/i&gt;'</span>,</span><br><span class="line"><span class="string">'                &lt;/em&gt;'</span>,</span><br><span class="line"><span class="string">'            &lt;/li&gt;'</span>,</span><br></pre></td></tr></table></figure></p>
+<h2 id="IE浏览器（9、10、11）中-input-password-类型在-display-none的元素内，不完全重现，尽量考虑规避"><a href="#IE浏览器（9、10、11）中-input-password-类型在-display-none的元素内，不完全重现，尽量考虑规避" class="headerlink" title="IE浏览器（9、10、11）中 input password 类型在 display none的元素内，不完全重现，尽量考虑规避"></a>IE浏览器（9、10、11）中 input password 类型在 display none的元素内，不完全重现，尽量考虑规避</h2><h2 id="IE浏览器（9、10、11）中-在input-select-等form元素上-使用-if-有潜在的-avalon报错崩溃风险，尽量避免"><a href="#IE浏览器（9、10、11）中-在input-select-等form元素上-使用-if-有潜在的-avalon报错崩溃风险，尽量避免" class="headerlink" title="IE浏览器（9、10、11）中 在input select 等form元素上 使用 if 有潜在的 avalon报错崩溃风险，尽量避免"></a>IE浏览器（9、10、11）中 在input select 等form元素上 使用 if 有潜在的 avalon报错崩溃风险，尽量避免</h2>
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2016/11/20/漫谈-Web-VR/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>PREV</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">2017-01-19</span>
+            
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签 | tags"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/MVVM/" title="查看 MVVM 标签">
+                    #MVVM
+                  </a>
+                </span>
+                
+                <span class="span--tag">
+                  <a href="/tags/avalon/" title="查看 avalon 标签">
+                    #avalon
+                  </a>
+                </span>
+                
+              </span>
+            
+            
+              <span class="post-categories">
+                <i class="iconfont icon-bookmark" title="类别 | categories"></i>
+                
+                <span class="span--category">
+                  <a href="/categories/Coding/" title="查看 Coding 分类">
+                    #Coding
+                  </a>
+                </span>
+                
+              </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2017/07/14/Webpack-2-学习笔记/" target="_self">
+                <span>NEXT</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div class="post-catalog" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#项目背景"><span class="toc-text">项目背景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#问题List"><span class="toc-text">问题List</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#官网提供的-2-2-4-avalon-js-IE8-下报错"><span class="toc-text">官网提供的 2.2.4 avalon.js IE8 下报错</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#组件slot在-2-2-4-版本中和API文档中表现差异较大"><span class="toc-text">组件slot在 2.2.4 版本中和API文档中表现差异较大</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IE8一下-直接使用兼容过的JSON-stringfy-处理-avalon对象上的数据可能会返回-undefined"><span class="toc-text">IE8一下 直接使用兼容过的JSON.stringfy 处理 avalon对象上的数据可能会返回 undefined</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#component-中模板只支持最外层一个html闭合结构-同级多个无法渲染"><span class="toc-text">component 中模板只支持最外层一个html闭合结构 同级多个无法渲染</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#for循环的模板中-外层有-class-内部判断时-循环内部的if会出现重复渲染（非必先，排除法才找到问题冲突点）"><span class="toc-text">for循环的模板中 外层有:class 内部判断时 循环内部的if会出现重复渲染（非必先，排除法才找到问题冲突点）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IE浏览器（9、10、11）中-input-password-类型在-display-none的元素内，不完全重现，尽量考虑规避"><span class="toc-text">IE浏览器（9、10、11）中 input password 类型在 display none的元素内，不完全重现，尽量考虑规避</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IE浏览器（9、10、11）中-在input-select-等form元素上-使用-if-有潜在的-avalon报错崩溃风险，尽量避免"><span class="toc-text">IE浏览器（9、10、11）中 在input select 等form元素上 使用 if 有潜在的 avalon报错崩溃风险，尽量避免</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+  <!-- <script src="/js/catalog.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/js/catalog.js"></script>
+
+
+
+    
+      <div class="comments-container">
+        
+
+
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+
+  <div id="vcomments"></div>
+
+  <script>
+    new Valine({
+      el: '#vcomments',
+      appId: 'kUOr7QeM3HuECQcFmC2xKIxD-gzGzoHsz',
+      appKey: 'rkioF9XeiLygfxEhXSrKilPY',
+      placeholder: 'Welcome!',
+      avatar: 'retro'
+    })
+  </script>
+
+    <style>
+      .comments-container .v .vempty {
+        display: none!important;
+      }
+    </style>
+
+
+
+
+      </div>
+    
+  </div>
+
+  
+        <div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" href="https://github.com/mtmzorro/">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="email" href="mtmzorro@foxmail.com">
+            <i class="iconfont icon-envelope"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="微博" href="http://weibo.com/mtmzorro">
+            <i class="iconfont icon-weibo"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    <div class="footer-more">
+      <a href="https://mtmzorro.com">Copyright © mTmzorro 2020</a>
+    </div>
+  
+    <div class="footer-more">
+      <a href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="back-to-top hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+<!-- <script src="/js/backtotop.js"></script> -->
+<script src="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/js/backtotop.js"></script>
+
+
+    </div>
+  </body>
+</html>

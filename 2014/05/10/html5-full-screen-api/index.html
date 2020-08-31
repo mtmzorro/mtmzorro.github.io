@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="author" content="zchengsite, 1451426471@qq.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+  <title>[译]HTM5 Full-Screen API 怎么玩 - - | MT_Engine</title>
+
+  
+    <link rel="apple-touch-icon" href="/images/avatar.jpg">
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  <!-- <link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css"> -->
+  <!-- use jsdelivr CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/css/base.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/iconfont/iconfont.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/css/github-markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/css/highlight.css">
+
+  <!-- jquery3.3.1 -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+
+  <!-- fancybox -->
+  <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
+  <script async src="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.js"></script>
+  <!-- <script src="/js/fancybox.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/js/fancybox.js"></script>
+
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-50852091-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-50852091-1');
+    </script>
+  
+
+</head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/"><img src="/images/avatar.jpg" alt=""></a>
+    <div class="nickname"><a href="/about/">mTmzorro</a></div>
+    <div class="self-tag"><a href="/about/">前端手艺人/科技产品爱好者/军迷/Gamer/折腾家</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">主页</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">归档</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">标签</a>
+        </li>
+      
+        <li class="nav-item" data-path="/guestbook/">
+          <a href="/guestbook/">留言</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">关于</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+<!-- <script src="/js/activeNav.js"></script> -->
+<script src="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/js/activeNav.js"></script>
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">[译]HTM5 Full-Screen API 怎么玩 - -</div>
+      <div class="post-attach">
+        <span class="post-pubtime">2014-05-10</span>
+        
+          <span class="post-tags">
+            <i class="iconfont icon-tags" title="标签 | tags"></i>
+            
+            <span class="span--tag">
+              <a href="/tags/HTML5/" title="查看 HTML5 标签">
+                #HTML5
+              </a>
+            </span>
+            
+            <span class="span--tag">
+              <a href="/tags/Full-Screen/" title="查看 Full-Screen 标签">
+                #Full-Screen
+              </a>
+            </span>
+            
+            <span class="span--tag">
+              <a href="/tags/全屏/" title="查看 全屏 标签">
+                #全屏
+              </a>
+            </span>
+            
+          </span>
+        
+        
+          <span class="post-categories">
+            <i class="iconfont icon-bookmark" title="类别 | categories"></i>
+            
+            <span class="span--category">
+              <a href="/categories/Coding/" title="查看 Coding 分类">
+                #Coding
+              </a>
+            </span>
+            
+          </span>
+        
+      </div>
+      <div class="markdown-body">
+        <blockquote>
+<p>如果你不喜欢改变，那么你可能并不适合干web开发这行。我曾经在2012年底发表过<a href="http://www.sitepoint.com/html5-full-screen-api/" target="_blank" rel="noopener">Full-Screen API</a>，当时我表示一些实现细节应该修改下，不过我从来没想过一年之后我得重新写一版！这也许不是最后一版，不过我需要感谢<a href="http://twitter.com/dstorey" target="_blank" rel="noopener">David Storey</a>给我指出了最近技术方法的发展方向…</p>
+</blockquote>
+<h2 id="Full-Screen-API-是个啥"><a href="#Full-Screen-API-是个啥" class="headerlink" title="Full-Screen API 是个啥"></a>Full-Screen API 是个啥</h2><p>这个API允许一个元素用全屏方式来展示。不过并不是你去按<code>F11</code>来强制你的浏览器进入全屏模式，这个API可以用于运行在容器中的图片、视频和游戏。当你进入全屏模式时，用户会接到一条信息来告诉他们能按<code>ESC</code>在任何时间返回原来页面。</p>
+<p>Full-Screen API 现在已经支持了包括IE11在内的大部分桌面浏览器（译者：联想到天朝苦比的IE6等占有率）。对移动端也有部分支持，不过他们基本都已经泡在全屏模式下了。别高兴的太早，很不幸我们还有一些差别微调、浏览器前缀以及不同浏览器的兼容性需要解决…</p>
+<h2 id="The-JavaScript-API"><a href="#The-JavaScript-API" class="headerlink" title="The JavaScript API"></a>The JavaScript API</h2><p>假设我们有张图片ID是<code>myimage</code>想要在全屏模式下展示。所需要用到的主要方法和属性如下：</p>
+<h3 id="document-fullscreenEnabled"><a href="#document-fullscreenEnabled" class="headerlink" title="document.fullscreenEnabled"></a>document.fullscreenEnabled</h3><p>当<code>document</code>允许全屏模式时候，这个属性会返回<code>true</code>。这玩意也能拿来检查浏览器是否支持全屏API：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="built_in">document</span>.fullscreenEnabled) &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+<p>早些时候这个接口实现的属性上是大写字母‘S’在‘Screen’，而且Firefox中仍然需要大写。下面是加上跨浏览器支持的代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// full-screen available?</span></span><br><span class="line"><span class="keyword">if</span> (</span><br><span class="line">    <span class="built_in">document</span>.fullscreenEnabled ||</span><br><span class="line">    <span class="built_in">document</span>.webkitFullscreenEnabled ||</span><br><span class="line">    <span class="built_in">document</span>.mozFullScreenEnabled ||</span><br><span class="line">    <span class="built_in">document</span>.msFullscreenEnabled</span><br><span class="line">) &#123;</span><br><span class="line">...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Opera 12 是唯一一个不需要prefix的浏览器，不过Opera 15+ 得使用<code>webkit</code>。</p>
+<h3 id="element-requestFullscreen"><a href="#element-requestFullscreen" class="headerlink" title="element.requestFullscreen()"></a>element.requestFullscreen()</h3><p>这个方法可以让单个元素进入全屏模式，举个栗子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"myimage"</span>).requestFullscreen();</span><br></pre></td></tr></table></figure>
+<p>‘screen’ 首字母是小写。跨浏览器版本：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> i = <span class="built_in">document</span>.getElementById(<span class="string">"myimage"</span>);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// go full-screen</span></span><br><span class="line"><span class="keyword">if</span> (i.requestFullscreen) &#123;</span><br><span class="line">    i.requestFullscreen();</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (i.webkitRequestFullscreen) &#123;</span><br><span class="line">    i.webkitRequestFullscreen();</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (i.mozRequestFullScreen) &#123;</span><br><span class="line">    i.mozRequestFullScreen();</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (i.msRequestFullscreen) &#123;</span><br><span class="line">    i.msRequestFullscreen();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="document-fullscreenElement"><a href="#document-fullscreenElement" class="headerlink" title="document.fullscreenElement"></a>document.fullscreenElement</h3><p>这个属性会返回当前被全屏显示的元素或者<code>null</code>（非全屏时）：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"myimage"</span>).requestFullscreen();</span><br></pre></td></tr></table></figure>
+<p>‘screen’是小写。跨浏览器版本：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// are we full-screen?</span></span><br><span class="line"><span class="keyword">if</span> (</span><br><span class="line">    <span class="built_in">document</span>.fullscreenElement ||</span><br><span class="line">    <span class="built_in">document</span>.webkitFullscreenElement ||</span><br><span class="line">    <span class="built_in">document</span>.mozFullScreenElement ||</span><br><span class="line">    <span class="built_in">document</span>.msFullscreenElement</span><br><span class="line">) &#123;</span><br><span class="line">...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="document-exitFullscreen"><a href="#document-exitFullscreen" class="headerlink" title="document.exitFullscreen()"></a>document.exitFullscreen()</h3><p>这个方法可以退出全屏模式：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="built_in">document</span>.fullscreenElement) &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+<p>‘screen’也是小写，之前这玩意叫<code>cancelFullScreen</code>，Firefox中还这么叫。跨浏览器版本：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// exit full-screen</span></span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">document</span>.exitFullscreen) &#123;</span><br><span class="line">    <span class="built_in">document</span>.exitFullscreen();</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">document</span>.webkitExitFullscreen) &#123;</span><br><span class="line">    <span class="built_in">document</span>.webkitExitFullscreen();</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">document</span>.mozCancelFullScreen) &#123;</span><br><span class="line">    <span class="built_in">document</span>.mozCancelFullScreen();</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">document</span>.msExitFullscreen) &#123;</span><br><span class="line">    <span class="built_in">document</span>.msExitFullscreen();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="document-fullscreenchange-event"><a href="#document-fullscreenchange-event" class="headerlink" title="document.fullscreenchange event"></a>document.fullscreenchange <code>event</code></h3><p>这个事件会在进入或者退出全屏模式时候触发。这个事件没有返回什么信息，如果你要检查当前是否为全屏模式，其实你可以用<code>document.fullscreenElement</code>不是<code>null</code>来检查是否全屏模式。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">"fullscreenchange"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; ... &#125;);</span><br></pre></td></tr></table></figure>
+<p>这名字一直没变过，不过还需要做些跨浏览器处理：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">"fullscreenchange"</span>, FShandler);</span><br><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">"webkitfullscreenchange"</span>, FShandler);</span><br><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">"mozfullscreenchange"</span>, FShandler);</span><br><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">"MSFullscreenChange"</span>, FShandler);</span><br></pre></td></tr></table></figure>
+<h3 id="document-fullscreenerror-event"><a href="#document-fullscreenerror-event" class="headerlink" title="document.fullscreenerror event"></a>document.fullscreenerror <code>event</code></h3><p>全屏模式也有失败状态。举个栗子，<code>iframes</code>没有<code>allowfullscreen</code>属性或者有些插件等东西会阻止全屏模式。一个<code>fullscreenerror</code>事件因此会被触发.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">"fullscreenerror"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; ... &#125;);</span><br></pre></td></tr></table></figure>
+<p>这名字一直没变过，不过还需要做些跨浏览器处理：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">"fullscreenerror"</span>, FSerrorhandler);</span><br><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">"webkitfullscreenerror"</span>, FSerrorhandler);</span><br><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">"mozfullscreenerror"</span>, FSerrorhandler);</span><br><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">"MSFullscreenError"</span>, FSerrorhandler);</span><br></pre></td></tr></table></figure>
+<h2 id="Full-Screen-CSS"><a href="#Full-Screen-CSS" class="headerlink" title="Full-Screen CSS"></a>Full-Screen CSS</h2><p>我们也能用CSS来影响全屏样式</p>
+<h3 id="fullscreen-伪类"><a href="#fullscreen-伪类" class="headerlink" title=":fullscreen 伪类"></a>:fullscreen <code>伪类</code></h3><p>你可以使用这个伪类来改变一个元素或者他的子元素在全屏模式中的的样式：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-pseudo">:fullscreen</span> &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这玩意以前叫<code>:full-screen</code>，而且在webkit内核浏览器和Firefox中还这么叫。跨浏览器代码：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-pseudo">:-webkit-full-screen</span> &#123;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="selector-pseudo">:-moz-full-screen</span> &#123;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="selector-pseudo">:-ms-fullscreen</span> &#123;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="selector-pseudo">:fullscreen</span> &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>（译者：多使用SASS之类的 CSS预处理语言来解决这些蛋疼的prefix把）</em></p>
+<h3 id="backdrop"><a href="#backdrop" class="headerlink" title="::backdrop"></a>::backdrop</h3><p>你也可以用这个属性来给一个元素在全屏模式中设置一个不一样的单色或者图片遮罩背景：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-pseudo">:fullscreen</span><span class="selector-pseudo">::backdrop</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#006</span>; <span class="comment">/* dark blue */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>backdrop</code>是一个在全屏元素之下、页面之上的伪元素。IE11支持，Firefox 和 Opera 12不支持。Chrome、Safari、Opera 15+都支持但是并不允许去修改。所以目前你只能在IE11中使用，举个栗子：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-pseudo">:-ms-fullscreen</span><span class="selector-pseudo">::-ms-backdrop</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#006</span>; <span class="comment">/* dark blue */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="样式差异"><a href="#样式差异" class="headerlink" title="样式差异"></a>样式差异</h2><p>在IE11，Firefox，Opera 12中全屏的元素会被设置成 100%的宽高。图片隐藏被拉伸、原始的宽高比也被忽略了。</p>
+<ul>
+<li>在IE11中设置一个宽高属性会把全屏元素放到一个暗色的背景（可以使用<code>::backdrop</code>设置）中并基于浏览器左上角。</li>
+<li>Opera 12和IE11的展现方式很像，不过是个透明的背景。</li>
+<li>Firefox忽略尺寸大小。</li>
+</ul>
+<p>Chrome、Safari、Opera 15+中 元素都被居中放置在一个黑色的背景中。</p>
+<p>如果你想保持一致性，那么让Webkit/Blink内核的浏览器变成Firefox/IE11那样很容易：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-pseudo">:-webkit-full-screen</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: fixed;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">background</span>: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>另一种思路，你也能让IE11符合Webkit/Blink内核的浏览器居中那样的标准：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-pseudo">:-ms-fullscreen</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: auto;</span><br><span class="line">  <span class="attribute">height</span>: auto;</span><br><span class="line">  <span class="attribute">margin</span>: auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个方法对Firefox不管用，就像之前提到那样他忽略了宽高设置。怎么解决那，你需要把父级元素设置成全屏模式，然后做出适当的调整就像<a href="/example/html5-full-screen-api/index.html">demo</a>这样.</p>
+<h2 id="准备好开搞了？"><a href="#准备好开搞了？" class="headerlink" title="准备好开搞了？"></a>准备好开搞了？</h2><p>HTML5 Full-Screen API相当的简单，不过为了解决浏览器兼容性问题还需要写一大坨很丑的代码，而且谁也不能保证这些浏览器各种API不会再次修改。这种情况以后应该会有所改善，所以在API稳定前把时间和精力投入到其他功能上是个更好的选择。</p>
+<p>最后，全屏模式对于HTML5游戏和视频网站来说是必不可少的。如果你不想自己去维护这些代码，考虑使用一些第三方的库把，<a href="https://github.com/sindresorhus/screenfull.js/" target="_blank" rel="noopener">screenfull.js</a>就是一个不错的选择。</p>
+<p>Best of luck!</p>
+<hr>
+<p>原文地址：<a href="http://www.sitepoint.com/use-html5-full-screen-api/" target="_blank" rel="noopener">http://www.sitepoint.com/use-html5-full-screen-api/</a> 略有修改</p>
+<p>所译文章遵守 <a href="http://zh.wikipedia.org/wiki/Wikipedia:CC" target="_blank" rel="noopener">CC协议</a> 如有侵权之处请联系我</p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2014/05/10/hello-world/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>PREV</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">2014-05-10</span>
+            
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签 | tags"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/HTML5/" title="查看 HTML5 标签">
+                    #HTML5
+                  </a>
+                </span>
+                
+                <span class="span--tag">
+                  <a href="/tags/Full-Screen/" title="查看 Full-Screen 标签">
+                    #Full-Screen
+                  </a>
+                </span>
+                
+                <span class="span--tag">
+                  <a href="/tags/全屏/" title="查看 全屏 标签">
+                    #全屏
+                  </a>
+                </span>
+                
+              </span>
+            
+            
+              <span class="post-categories">
+                <i class="iconfont icon-bookmark" title="类别 | categories"></i>
+                
+                <span class="span--category">
+                  <a href="/categories/Coding/" title="查看 Coding 分类">
+                    #Coding
+                  </a>
+                </span>
+                
+              </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2014/05/26/an-introduction-to-the-web-notifications-api/" target="_self">
+                <span>NEXT</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div class="post-catalog" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Full-Screen-API-是个啥"><span class="toc-text">Full-Screen API 是个啥</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-JavaScript-API"><span class="toc-text">The JavaScript API</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#document-fullscreenEnabled"><span class="toc-text">document.fullscreenEnabled</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#element-requestFullscreen"><span class="toc-text">element.requestFullscreen()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#document-fullscreenElement"><span class="toc-text">document.fullscreenElement</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#document-exitFullscreen"><span class="toc-text">document.exitFullscreen()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#document-fullscreenchange-event"><span class="toc-text">document.fullscreenchange event</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#document-fullscreenerror-event"><span class="toc-text">document.fullscreenerror event</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Full-Screen-CSS"><span class="toc-text">Full-Screen CSS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#fullscreen-伪类"><span class="toc-text">:fullscreen 伪类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#backdrop"><span class="toc-text">::backdrop</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#样式差异"><span class="toc-text">样式差异</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#准备好开搞了？"><span class="toc-text">准备好开搞了？</span></a></li></ol>
+    </div>
+  </div>
+
+  <!-- <script src="/js/catalog.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/js/catalog.js"></script>
+
+
+
+    
+      <div class="comments-container">
+        
+
+
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+
+  <div id="vcomments"></div>
+
+  <script>
+    new Valine({
+      el: '#vcomments',
+      appId: 'kUOr7QeM3HuECQcFmC2xKIxD-gzGzoHsz',
+      appKey: 'rkioF9XeiLygfxEhXSrKilPY',
+      placeholder: 'Welcome!',
+      avatar: 'retro'
+    })
+  </script>
+
+    <style>
+      .comments-container .v .vempty {
+        display: none!important;
+      }
+    </style>
+
+
+
+
+      </div>
+    
+  </div>
+
+  
+        <div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" href="https://github.com/mtmzorro/">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="email" href="mtmzorro@foxmail.com">
+            <i class="iconfont icon-envelope"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="微博" href="http://weibo.com/mtmzorro">
+            <i class="iconfont icon-weibo"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    <div class="footer-more">
+      <a href="https://mtmzorro.com">Copyright © mTmzorro 2020</a>
+    </div>
+  
+    <div class="footer-more">
+      <a href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="back-to-top hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+<!-- <script src="/js/backtotop.js"></script> -->
+<script src="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/js/backtotop.js"></script>
+
+
+    </div>
+  </body>
+</html>

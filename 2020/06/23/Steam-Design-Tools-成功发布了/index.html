@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="author" content="zchengsite, 1451426471@qq.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+  <title>Steam Design Tools 上架 Chrome 市场 | MT_Engine</title>
+
+  
+    <link rel="apple-touch-icon" href="/images/avatar.jpg">
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  <!-- <link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css"> -->
+  <!-- use jsdelivr CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/css/base.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/iconfont/iconfont.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/css/github-markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/css/highlight.css">
+
+  <!-- jquery3.3.1 -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+
+  <!-- fancybox -->
+  <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
+  <script async src="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.js"></script>
+  <!-- <script src="/js/fancybox.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/js/fancybox.js"></script>
+
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-50852091-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-50852091-1');
+    </script>
+  
+
+</head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/"><img src="/images/avatar.jpg" alt=""></a>
+    <div class="nickname"><a href="/about/">mTmzorro</a></div>
+    <div class="self-tag"><a href="/about/">前端手艺人/科技产品爱好者/军迷/Gamer/折腾家</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">主页</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">归档</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">标签</a>
+        </li>
+      
+        <li class="nav-item" data-path="/guestbook/">
+          <a href="/guestbook/">留言</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">关于</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+<!-- <script src="/js/activeNav.js"></script> -->
+<script src="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/js/activeNav.js"></script>
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">Steam Design Tools 上架 Chrome 市场</div>
+      <div class="post-attach">
+        <span class="post-pubtime">2020-06-23</span>
+        
+          <span class="post-tags">
+            <i class="iconfont icon-tags" title="标签 | tags"></i>
+            
+            <span class="span--tag">
+              <a href="/tags/React/" title="查看 React 标签">
+                #React
+              </a>
+            </span>
+            
+            <span class="span--tag">
+              <a href="/tags/Chrome-extensions/" title="查看 Chrome extensions 标签">
+                #Chrome extensions
+              </a>
+            </span>
+            
+          </span>
+        
+        
+          <span class="post-categories">
+            <i class="iconfont icon-bookmark" title="类别 | categories"></i>
+            
+            <span class="span--category">
+              <a href="/categories/Coding/" title="查看 Coding 分类">
+                #Coding
+              </a>
+            </span>
+            
+          </span>
+        
+      </div>
+      <div class="markdown-body">
+        <h2 id="Steam-Design-Tools-是什么"><a href="#Steam-Design-Tools-是什么" class="headerlink" title="Steam Design Tools 是什么"></a>Steam Design Tools 是什么</h2><p><strong>一个 Steam 个人资料页背景图和展柜设计增强 Chrome 扩展工具</strong></p>
+<p><strong>开发初衷：</strong></p>
+<p>当初市场里面花钱买几个背景图装饰下个人主页，谁知道只能查看一个背景图？实际效果完全靠 YY ？</p>
+<p>这忍不了啊，于是设计和开发这个 chrome 扩展，最近已经成功上架。</p>
+<h2 id="项目主页"><a href="#项目主页" class="headerlink" title="项目主页"></a>项目主页</h2><ul>
+<li><a href="https://steamdt.mtmzorro.com/" target="_blank" rel="noopener">https://steamdt.mtmzorro.com/</a></li>
+</ul>
+<h2 id="UI-预览"><a href="#UI-预览" class="headerlink" title="UI 预览"></a>UI 预览</h2><p><img src="https://cdn.jsdelivr.net/gh/mtmzorro/steam-design-tools@1.0.1/docs/assets/img/app.png" width="825" alt="app"></p>
+<h2 id="技术栈"><a href="#技术栈" class="headerlink" title="技术栈"></a>技术栈</h2><p>React / Chrome extensions</p>
+<h2 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h2><ul>
+<li><a href="https://chrome.google.com/webstore/detail/steam-design-tools/ipndeiedddcbjjlfbinflapdlommhalf" target="_blank" rel="noopener">Chrome 网上应用店</a> 上架完成</li>
+<li><a href="https://github.com/mtmzorro/steam-design-tools/releases" target="_blank" rel="noopener">Releases</a> <del><code>.crx</code> 文件下载，然后在 Chrome 中打开 chrome://extensions/ 将 <code>.crx</code> 文件托进去即可安装</del> Chrome 最新版本已经阻止<code>.crx</code>直接运行，请下载<code>.zip</code>文件包，解压后进入<code>chrome://extensions/</code>点击「加载已解压的扩展程序」按钮。</li>
+</ul>
+<h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><ul>
+<li>存储 Steam 市场中的背景图物品。</li>
+<li>存储 Steam 个人库存中的背景图物品。</li>
+<li>将存储中的背景图物品应用于 Steam 个人资料页进行实时预览。</li>
+<li>扩展个人资料页中展柜（艺术品、截图）功能，直接在展柜替换本地图片实时预览。</li>
+</ul>
+<h2 id="功能预览"><a href="#功能预览" class="headerlink" title="功能预览"></a>功能预览</h2><p><strong>存储 Steam 市场中的背景图物品，并在个人资料页预览</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/mtmzorro/steam-design-tools@1.0.1/docs/assets/img/feature-1.gif" alt="Feature-1"></p>
+<p><strong>存储 Steam 个人库存中的背景图物品，并在个人资料页预览</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/mtmzorro/steam-design-tools@1.0.1/docs/assets/img/feature-2.gif" alt="Feature-2"></p>
+<p><strong>展柜（艺术品、截图）替换本地图片实时预览，按钮提示当前图片尺寸</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/mtmzorro/steam-design-tools@1.0.1/docs/assets/img/feature-3.gif" alt="Feature-3"></p>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2019/07/05/「Dota-Underlords-刀塔霸业」桌面版自定义窗口模式分辨率/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>PREV</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">2020-06-23</span>
+            
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签 | tags"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/React/" title="查看 React 标签">
+                    #React
+                  </a>
+                </span>
+                
+                <span class="span--tag">
+                  <a href="/tags/Chrome-extensions/" title="查看 Chrome extensions 标签">
+                    #Chrome extensions
+                  </a>
+                </span>
+                
+              </span>
+            
+            
+              <span class="post-categories">
+                <i class="iconfont icon-bookmark" title="类别 | categories"></i>
+                
+                <span class="span--category">
+                  <a href="/categories/Coding/" title="查看 Coding 分类">
+                    #Coding
+                  </a>
+                </span>
+                
+              </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2020/07/08/Cookie-SameSite/" target="_self">
+                <span>NEXT</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div class="post-catalog" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Steam-Design-Tools-是什么"><span class="toc-text">Steam Design Tools 是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目主页"><span class="toc-text">项目主页</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UI-预览"><span class="toc-text">UI 预览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#技术栈"><span class="toc-text">技术栈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#下载安装"><span class="toc-text">下载安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#功能"><span class="toc-text">功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#功能预览"><span class="toc-text">功能预览</span></a></li></ol>
+    </div>
+  </div>
+
+  <!-- <script src="/js/catalog.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/js/catalog.js"></script>
+
+
+
+    
+      <div class="comments-container">
+        
+
+
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+
+  <div id="vcomments"></div>
+
+  <script>
+    new Valine({
+      el: '#vcomments',
+      appId: 'kUOr7QeM3HuECQcFmC2xKIxD-gzGzoHsz',
+      appKey: 'rkioF9XeiLygfxEhXSrKilPY',
+      placeholder: 'Welcome!',
+      avatar: 'retro'
+    })
+  </script>
+
+    <style>
+      .comments-container .v .vempty {
+        display: none!important;
+      }
+    </style>
+
+
+
+
+      </div>
+    
+  </div>
+
+  
+        <div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" href="https://github.com/mtmzorro/">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="email" href="mtmzorro@foxmail.com">
+            <i class="iconfont icon-envelope"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="微博" href="http://weibo.com/mtmzorro">
+            <i class="iconfont icon-weibo"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    <div class="footer-more">
+      <a href="https://mtmzorro.com">Copyright © mTmzorro 2020</a>
+    </div>
+  
+    <div class="footer-more">
+      <a href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="back-to-top hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+<!-- <script src="/js/backtotop.js"></script> -->
+<script src="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/js/backtotop.js"></script>
+
+
+    </div>
+  </body>
+</html>

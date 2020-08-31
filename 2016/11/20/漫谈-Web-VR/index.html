@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="author" content="zchengsite, 1451426471@qq.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+  <title>漫谈 Web VR | MT_Engine</title>
+
+  
+    <link rel="apple-touch-icon" href="/images/avatar.jpg">
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  <!-- <link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css"> -->
+  <!-- use jsdelivr CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/css/base.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/iconfont/iconfont.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/css/github-markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/css/highlight.css">
+
+  <!-- jquery3.3.1 -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+
+  <!-- fancybox -->
+  <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
+  <script async src="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.js"></script>
+  <!-- <script src="/js/fancybox.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/js/fancybox.js"></script>
+
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-50852091-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-50852091-1');
+    </script>
+  
+
+</head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/"><img src="/images/avatar.jpg" alt=""></a>
+    <div class="nickname"><a href="/about/">mTmzorro</a></div>
+    <div class="self-tag"><a href="/about/">前端手艺人/科技产品爱好者/军迷/Gamer/折腾家</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">主页</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">归档</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">标签</a>
+        </li>
+      
+        <li class="nav-item" data-path="/guestbook/">
+          <a href="/guestbook/">留言</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">关于</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+<!-- <script src="/js/activeNav.js"></script> -->
+<script src="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/js/activeNav.js"></script>
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">漫谈 Web VR</div>
+      <div class="post-attach">
+        <span class="post-pubtime">2016-11-20</span>
+        
+          <span class="post-tags">
+            <i class="iconfont icon-tags" title="标签 | tags"></i>
+            
+            <span class="span--tag">
+              <a href="/tags/HTML5/" title="查看 HTML5 标签">
+                #HTML5
+              </a>
+            </span>
+            
+            <span class="span--tag">
+              <a href="/tags/VR/" title="查看 VR 标签">
+                #VR
+              </a>
+            </span>
+            
+          </span>
+        
+        
+          <span class="post-categories">
+            <i class="iconfont icon-bookmark" title="类别 | categories"></i>
+            
+            <span class="span--category">
+              <a href="/categories/Coding/" title="查看 Coding 分类">
+                #Coding
+              </a>
+            </span>
+            
+          </span>
+        
+      </div>
+      <div class="markdown-body">
+        <h2 id="VR-初印象"><a href="#VR-初印象" class="headerlink" title="VR 初印象"></a>VR 初印象</h2><p>VR 这个词想必大家已经不再陌生，说起 VR 可能最先想到的是游戏相关的内容。</p>
+<p><img src="https://i.loli.net/2020/06/18/yaQSkWq7Z4j9lCp.jpg" alt="161009141703530.jpg"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const girlfriend = new Object();</span><br></pre></td></tr></table></figure>
+<p>比如以上 I 社的 VR 游戏「夏日客厅」，通过“欺骗”玩家的眼睛，让玩家有种身灵其境，确实在与其互动的感觉。</p>
+<h2 id="VR-是如何欺骗你的眼睛-——-原理"><a href="#VR-是如何欺骗你的眼睛-——-原理" class="headerlink" title="VR 是如何欺骗你的眼睛 —— 原理"></a>VR 是如何欺骗你的眼睛 —— 原理</h2><p><img src="https://i.loli.net/2020/06/18/qRJQvl7GTbhVUeL.jpg" alt="79107.jpg"></p>
+<p>上图是一个 VR 视频的截图，大家会感觉并没有什么 VR 的体验，只是感觉看到了两个同步的视频。</p>
+<p>这个视频还是需要一个 VR 眼镜来播放，通过 VR 眼镜来让两个同步的视频对接上<code>左眼</code>和<code>右眼</code>，来感受到一种立体的感觉。</p>
+<p><img src="https://i.loli.net/2020/06/18/g3BEcIS5LzfiV8b.png" alt="001215.png"></p>
+<p>这个模拟出来的立体是基于人眼的<strong>深度知觉</strong>。</p>
+<p>由于人的两个眼睛的位置不一样，眼距大约 5~7cm，看到的东西就会有视差，程序就是模拟了这个视差，让大脑看到两个图像在做融合处理，通过“欺骗”大脑就产生了所谓有深度的立体感觉。</p>
+<h2 id="如何在浏览器中搞事情-——-Web-VR-API"><a href="#如何在浏览器中搞事情-——-Web-VR-API" class="headerlink" title="如何在浏览器中搞事情 —— Web VR API"></a>如何在浏览器中搞事情 —— Web VR API</h2><p>那么回到Web VR 上，我们如何用我们自己的双手创造个虚拟的女朋友那？这要说到Web VR的草案，是早期实验性 API。</p>
+<h3 id="MDN-Web-VR-API-草案"><a href="#MDN-Web-VR-API-草案" class="headerlink" title="MDN Web VR API 草案"></a>MDN Web VR API 草案</h3><blockquote>
+<p>草案链接：<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/WebVR_API" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/API/WebVR_API</a></p>
+</blockquote>
+<h3 id="MDN-Web-VR-API-兼容性覆盖"><a href="#MDN-Web-VR-API-兼容性覆盖" class="headerlink" title="MDN Web VR API 兼容性覆盖"></a>MDN Web VR API 兼容性覆盖</h3><table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Chrome</th>
+<th>Firefox (Gecko)</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari (WebKit）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Basic support</td>
+<td>Yes</td>
+<td>39</td>
+<td>NO</td>
+<td>NO</td>
+<td>NO</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Android</th>
+<th>Firefox Mobile (Gecko)</th>
+<th>IE Phone</th>
+<th>Opera Mobile</th>
+<th>Safari Mobile</th>
+<th>Chrome for Android</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Basic support</td>
+<td>No</td>
+<td>39.0 44.0</td>
+<td>NO</td>
+<td>NO</td>
+<td>NO</td>
+<td>NO</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>备注：通过 webvr-polyfill iPhone中 Safari 实测可以，微信中web view也行</p>
+</blockquote>
+<h3 id="polyfill"><a href="#polyfill" class="headerlink" title="polyfill"></a>polyfill</h3><p>WebVR仍处于w3c的草案阶段，所以开发和体验都需要polyfill。</p>
+<p>Google的 Boris Smus 编写了 webvr-polyfill，同时也搞了一个示例项目 <a href="https://github.com/borismus/webvr-boilerplate" target="_blank" rel="noopener">WebVR Boilerplate</a>。图像处理上底层主要依赖于Three.js。</p>
+<h2 id="A-Frame-更方便快捷的方式"><a href="#A-Frame-更方便快捷的方式" class="headerlink" title="A-Frame 更方便快捷的方式"></a>A-Frame 更方便快捷的方式</h2><p><img src="https://i.loli.net/2020/06/18/Ef3rmAjWwQbnzOt.png" alt="A Frame"></p>
+<p><a href="https://aframe.io/" target="_blank" rel="noopener">A-Frame</a> 是一个通过 HTML 创建 VR 体验的开源 WebVR 框架。通 过该框架构建的 VR 场景能兼容智能手机、PC、 Oculus Rift 和 HTC Vive。 </p>
+<p>目的就是吸引更多的开发者设计师参与到 Web VR生态中。</p>
+<h3 id="Demo-示例-场景、元素、镜头"><a href="#Demo-示例-场景、元素、镜头" class="headerlink" title="Demo 示例 场景、元素、镜头"></a>Demo 示例 场景、元素、镜头</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./lib/aframe.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./lib/aframe-extras.loaders.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 创建 scene 场景 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a-scene</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 引入外部资源 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a-assets</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">"texture"</span> <span class="attr">src</span>=<span class="string">"gf.jpg"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">"city"</span> <span class="attr">src</span>=<span class="string">"city.jpg"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">a-assets</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 球体 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a-sphere</span> <span class="attr">position</span>=<span class="string">"0 1.25 -1"</span> <span class="attr">radius</span>=<span class="string">"1.25"</span> <span class="attr">color</span>=<span class="string">"#EF2D5E"</span>&gt;</span><span class="tag">&lt;/<span class="name">a-sphere</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 长方体 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a-box</span> <span class="attr">position</span>=<span class="string">"-1 0.5 1"</span> <span class="attr">rotation</span>=<span class="string">"0 45 0"</span> <span class="attr">width</span>=<span class="string">"1"</span> <span class="attr">height</span>=<span class="string">"1"</span> <span class="attr">depth</span>=<span class="string">"1"</span>  <span class="attr">color</span>=<span class="string">"#4CC3D9"</span>&gt;</span><span class="tag">&lt;/<span class="name">a-box</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 圆柱体 src 贴图纹理 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a-cylinder</span> <span class="attr">position</span>=<span class="string">"1 0.75 1"</span> <span class="attr">radius</span>=<span class="string">"0.5"</span> <span class="attr">height</span>=<span class="string">"4"</span>  <span class="attr">src</span>=<span class="string">"#texture"</span>&gt;</span><span class="tag">&lt;/<span class="name">a-cylinder</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 平面 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a-plane</span> <span class="attr">rotation</span>=<span class="string">"-90 0 0"</span> <span class="attr">width</span>=<span class="string">"4"</span> <span class="attr">height</span>=<span class="string">"4"</span> <span class="attr">color</span>=<span class="string">"#7BC8A4"</span>&gt;</span><span class="tag">&lt;/<span class="name">a-plane</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 天空 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a-sky</span> <span class="attr">id</span>=<span class="string">"image-360"</span> <span class="attr">radius</span>=<span class="string">"10"</span> <span class="attr">src</span>=<span class="string">"#city"</span>&gt;</span><span class="tag">&lt;/<span class="name">a-sky</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a-entity</span> <span class="attr">position</span>=<span class="string">"0 0 3.8"</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- camera 镜头 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">a-camera</span> <span class="attr">wasd-controls-enabled</span>=<span class="string">"true"</span>&gt;</span><span class="tag">&lt;/<span class="name">a-camera</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">a-entity</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">a-scene</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2020/06/19/h6E1XlDAt9Vf3yG.png" alt="01540.png"><br>点击右下角的 VR 眼镜标示即可进入 VR 模式，推荐用手机 Chrome 浏览器打开，然后将手机屏幕放置在 VR 眼镜框中即可体验。</p>
+<h3 id="导入自定义模型"><a href="#导入自定义模型" class="headerlink" title="导入自定义模型"></a>导入自定义模型</h3><p>从官网的 demo 示例中，你可以很快的创建一些场景和自定义元素并使用 VR 查看效果。</p>
+<p>场景框架有了，舞台的主角模型怎么办？</p>
+<ul>
+<li>使用基础的组件，然后自己贴图调整</li>
+<li>使用建模工具，建模后导入</li>
+</ul>
+<p>这里着重演示建模并导入的方式，毕竟建模工具的效率比手写代码还是高很多，同时也可以复用很多现有的模型资源。</p>
+<h4 id="使用-MagicaVoxel"><a href="#使用-MagicaVoxel" class="headerlink" title="使用 MagicaVoxel"></a>使用 MagicaVoxel</h4><p>MagicaVoxel 是一个快捷的模型编辑工具，比较适合一些类似像素风的建模。</p>
+<p><img src="https://i.loli.net/2020/06/19/9jqJyuad8spz4XT.png" alt="619005215.png"><br>先来打开一个<code>vox</code>文件下预设的模型<code>chr_rain</code>，就当成<code>girlfriend</code>把，然后在 Export 的时候选择<code>ply</code>格式，这个格式可以被 A-Frame 导入并使用。</p>
+<blockquote>
+<p>当然，这里只是演示，你也可以用更复杂的模型编辑工具开发模型，只要可以导出为<code>ply</code>格式即可。</p>
+</blockquote>
+<p>同样的我们也导入一个建筑模型<code>monu9.vox</code>，再导出为<code>build.ply</code>。</p>
+<p>然后新建一个 demo.html 并创建场景、摄像机等（省略了 html body和资源导入等）：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a-scene</span> <span class="attr">inspector</span>=<span class="string">"url: ./lib/aframe-inspector.min.js"</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- camera --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">a-entity</span> <span class="attr">position</span>=<span class="string">"-0.36 0.3 0.21"</span> <span class="attr">camera</span>=<span class="string">"active:true;userHeight:1.6;near:0.01"</span> <span class="attr">wasd-controls</span>=<span class="string">"enabled:true;"</span> <span class="attr">rotation</span>=<span class="string">"-32.887777440509275 -40.90918657234071 0"</span> <span class="attr">look-controls</span>=<span class="string">""</span> <span class="attr">aframe-injected</span>=<span class="string">""</span> <span class="attr">data-aframe-inspector</span>=<span class="string">"default-camera"</span>&gt;</span><span class="tag">&lt;/<span class="name">a-entity</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- assets --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">a-assets</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">a-asset-item</span> <span class="attr">id</span>=<span class="string">"build"</span> <span class="attr">src</span>=<span class="string">"build.ply"</span>&gt;</span><span class="tag">&lt;/<span class="name">a-asset-item</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">a-asset-item</span> <span class="attr">id</span>=<span class="string">"gf"</span> <span class="attr">src</span>=<span class="string">"gf.ply"</span>&gt;</span><span class="tag">&lt;/<span class="name">a-asset-item</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">a-asset-item</span> <span class="attr">id</span>=<span class="string">"gf_2"</span> <span class="attr">src</span>=<span class="string">"gf_2.ply"</span>&gt;</span><span class="tag">&lt;/<span class="name">a-asset-item</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">a-assets</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="tag">&lt;<span class="name">a-entity</span> <span class="attr">scale</span>=<span class="string">""</span> <span class="attr">ply-model</span>=<span class="string">"src: #build"</span> <span class="attr">rotation</span>=<span class="string">"-90 0 0"</span>  <span class="attr">position</span>=<span class="string">"0 0 0"</span>&gt;</span><span class="tag">&lt;/<span class="name">a-entity</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">a-entity</span> <span class="attr">scale</span>=<span class="string">""</span> <span class="attr">ply-model</span>=<span class="string">"src: #gf_2"</span> <span class="attr">rotation</span>=<span class="string">"-90 0 0"</span>  <span class="attr">position</span>=<span class="string">"0 0 0"</span>&gt;</span><span class="tag">&lt;/<span class="name">a-entity</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">a-scene</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2020/06/19/mjHDXx4PGZ8pyac.png" alt="19004536.png"><br>此时发现我们的“girlfriend”和建筑都过于巨大了，只能按S后退后才看清它们的面目，调整下这两个实体的<code>scale</code>属性，同时调整下<code>position</code>等。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a-entity</span> <span class="attr">scale</span>=<span class="string">"0.01 0.01 0.01"</span> <span class="attr">ply-model</span>=<span class="string">"src: #build"</span> <span class="attr">rotation</span>=<span class="string">"-90 0 0"</span>  <span class="attr">position</span>=<span class="string">"0 1.18 0"</span>&gt;</span><span class="tag">&lt;/<span class="name">a-entity</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a-entity</span> <span class="attr">scale</span>=<span class="string">"0.01 0.01 0.01"</span> <span class="attr">ply-model</span>=<span class="string">"src: #gf_2"</span> <span class="attr">rotation</span>=<span class="string">"-90 0 0"</span>  <span class="attr">position</span>=<span class="string">"0 1.77 -0.28"</span>&gt;</span><span class="tag">&lt;/<span class="name">a-entity</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="https://i.loli.net/2020/06/19/BO8VxeL3K29vwsC.png" alt="9004651.png"><br>然后在打开 VR 模式，既可以近距离的在建筑中观察我们导入的“girlfriend”。</p>
+<p>至此，我们已经完成了用 A-Frame 实现了创建场景并导入模型调整，然后开启 VR 模式进行预览。</p>
+<h2 id="Web-VR-应用展望"><a href="#Web-VR-应用展望" class="headerlink" title="Web VR 应用展望"></a>Web VR 应用展望</h2><p>Web VR 潜力还有待挖掘，对于VR来说目前在工程、医疗领域应用更为直接，VR已经帮助过宇航员进行一些模拟作业训练。 </p>
+<p>对于线上WEB购物场景也可以进行VR+AR的结合应用。比如在京东 上购买家电家具，对比的时候很直观的用VR形式告诉你尺寸颜色等， 收藏之后再通过AR增强相机投放在自己家中的位置看合不合适。 </p>
+<p>更多的应用场景还有待我们不断去发掘。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/WebVR_API" target="_blank" rel="noopener">MDN WebVR API</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/21556998" target="_blank" rel="noopener">WebVR如此近 - three.js的WebVR示例程序解析</a></li>
+</ul>
+<h2 id="一些-Web-VR的应用实例："><a href="#一些-Web-VR的应用实例：" class="headerlink" title="一些 Web VR的应用实例："></a>一些 Web VR的应用实例：</h2><ul>
+<li>虚拟现实家装设计：<a href="https://about.archilogic.com/" target="_blank" rel="noopener">https://about.archilogic.com/</a>  </li>
+<li>虚拟现实购物：<a href="https://shopifyvr.myshopify.com/pages/virtual-reality" target="_blank" rel="noopener">https://shopifyvr.myshopify.com/pages/virtual-reality</a> </li>
+<li>视频类网站：<a href="http://mj.mojing.cn/" target="_blank" rel="noopener">http://mj.mojing.cn/</a></li>
+</ul>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2016/06/20/something-about-git-rebase-rewriting-history/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>PREV</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">2016-11-20</span>
+            
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签 | tags"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/HTML5/" title="查看 HTML5 标签">
+                    #HTML5
+                  </a>
+                </span>
+                
+                <span class="span--tag">
+                  <a href="/tags/VR/" title="查看 VR 标签">
+                    #VR
+                  </a>
+                </span>
+                
+              </span>
+            
+            
+              <span class="post-categories">
+                <i class="iconfont icon-bookmark" title="类别 | categories"></i>
+                
+                <span class="span--category">
+                  <a href="/categories/Coding/" title="查看 Coding 分类">
+                    #Coding
+                  </a>
+                </span>
+                
+              </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2017/01/19/project-about-avalon/" target="_self">
+                <span>NEXT</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div class="post-catalog" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#VR-初印象"><span class="toc-text">VR 初印象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VR-是如何欺骗你的眼睛-——-原理"><span class="toc-text">VR 是如何欺骗你的眼睛 —— 原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何在浏览器中搞事情-——-Web-VR-API"><span class="toc-text">如何在浏览器中搞事情 —— Web VR API</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MDN-Web-VR-API-草案"><span class="toc-text">MDN Web VR API 草案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MDN-Web-VR-API-兼容性覆盖"><span class="toc-text">MDN Web VR API 兼容性覆盖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#polyfill"><span class="toc-text">polyfill</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#A-Frame-更方便快捷的方式"><span class="toc-text">A-Frame 更方便快捷的方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Demo-示例-场景、元素、镜头"><span class="toc-text">Demo 示例 场景、元素、镜头</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#导入自定义模型"><span class="toc-text">导入自定义模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#使用-MagicaVoxel"><span class="toc-text">使用 MagicaVoxel</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web-VR-应用展望"><span class="toc-text">Web VR 应用展望</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-text">参考资料</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一些-Web-VR的应用实例："><span class="toc-text">一些 Web VR的应用实例：</span></a></li></ol>
+    </div>
+  </div>
+
+  <!-- <script src="/js/catalog.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/js/catalog.js"></script>
+
+
+
+    
+      <div class="comments-container">
+        
+
+
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+
+  <div id="vcomments"></div>
+
+  <script>
+    new Valine({
+      el: '#vcomments',
+      appId: 'kUOr7QeM3HuECQcFmC2xKIxD-gzGzoHsz',
+      appKey: 'rkioF9XeiLygfxEhXSrKilPY',
+      placeholder: 'Welcome!',
+      avatar: 'retro'
+    })
+  </script>
+
+    <style>
+      .comments-container .v .vempty {
+        display: none!important;
+      }
+    </style>
+
+
+
+
+      </div>
+    
+  </div>
+
+  
+        <div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" href="https://github.com/mtmzorro/">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="email" href="mtmzorro@foxmail.com">
+            <i class="iconfont icon-envelope"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="微博" href="http://weibo.com/mtmzorro">
+            <i class="iconfont icon-weibo"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    <div class="footer-more">
+      <a href="https://mtmzorro.com">Copyright © mTmzorro 2020</a>
+    </div>
+  
+    <div class="footer-more">
+      <a href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="back-to-top hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+<!-- <script src="/js/backtotop.js"></script> -->
+<script src="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/js/backtotop.js"></script>
+
+
+    </div>
+  </body>
+</html>

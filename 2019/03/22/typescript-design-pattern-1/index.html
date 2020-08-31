@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="author" content="zchengsite, 1451426471@qq.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+  <title>Typescript 重走常用设计模式（一） | MT_Engine</title>
+
+  
+    <link rel="apple-touch-icon" href="/images/avatar.jpg">
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <!-- Raleway-Font -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+
+  <!-- hexo site css -->
+  <!-- <link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css"> -->
+  <!-- use jsdelivr CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/css/base.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/iconfont/iconfont.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/css/github-markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/css/highlight.css">
+
+  <!-- jquery3.3.1 -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+
+  <!-- fancybox -->
+  <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
+  <script async src="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.js"></script>
+  <!-- <script src="/js/fancybox.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/js/fancybox.js"></script>
+
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-50852091-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-50852091-1');
+    </script>
+  
+
+</head>
+
+
+  <body>
+    <div id="app">
+      <div class="header">
+  <div class="avatar">
+    <a href="/"><img src="/images/avatar.jpg" alt=""></a>
+    <div class="nickname"><a href="/about/">mTmzorro</a></div>
+    <div class="self-tag"><a href="/about/">前端手艺人/科技产品爱好者/军迷/Gamer/折腾家</a></div>
+  </div>
+  <div class="navbar">
+    <ul>
+      
+        <li class="nav-item" data-path="/">
+          <a href="/">主页</a>
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          <a href="/archives/">归档</a>
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          <a href="/tags/">标签</a>
+        </li>
+      
+        <li class="nav-item" data-path="/guestbook/">
+          <a href="/guestbook/">留言</a>
+        </li>
+      
+        <li class="nav-item" data-path="/about/">
+          <a href="/about/">关于</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+<!-- <script src="/js/activeNav.js"></script> -->
+<script src="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/js/activeNav.js"></script>
+
+
+      <div class="flex-container">
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
+
+
+  
+  
+  
+  
+  
+  
+
+  
+  
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">Typescript 重走常用设计模式（一）</div>
+      <div class="post-attach">
+        <span class="post-pubtime">2019-03-22</span>
+        
+          <span class="post-tags">
+            <i class="iconfont icon-tags" title="标签 | tags"></i>
+            
+            <span class="span--tag">
+              <a href="/tags/typescript/" title="查看 typescript 标签">
+                #typescript
+              </a>
+            </span>
+            
+            <span class="span--tag">
+              <a href="/tags/javascript/" title="查看 javascript 标签">
+                #javascript
+              </a>
+            </span>
+            
+            <span class="span--tag">
+              <a href="/tags/设计模式/" title="查看 设计模式 标签">
+                #设计模式
+              </a>
+            </span>
+            
+          </span>
+        
+        
+          <span class="post-categories">
+            <i class="iconfont icon-bookmark" title="类别 | categories"></i>
+            
+            <span class="span--category">
+              <a href="/categories/Coding/" title="查看 Coding 分类">
+                #Coding
+              </a>
+            </span>
+            
+          </span>
+        
+      </div>
+      <div class="markdown-body">
+        <h2 id="前面的话"><a href="#前面的话" class="headerlink" title="前面的话"></a>前面的话</h2><p>说起设计模式，首先想到的就是类，虽然 Javascript 是一个弱类型动态语言，类也是通过模拟实现，但这不影响在开发过程中应用设计和模式。之前阅读过一些关于设计模式的书籍和文章，很好的指导了自己在日常项目中的编码思路。</p>
+<p>同时学无止境，随着 ECMAScript 标准的不断发展，诸如 Class、Proxy、Promise等的新特性不断加入，外加 Typescript 的应用，终于可以相对完整的实现这些设计模式，所以是时候再进行一次设计模式的回顾学习了。</p>
+<h2 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h2><p>设计模式，如其名，先有设计，再有模式。</p>
+<p>模式是对一些常用设计的总结和提炼，设计思想又对模式的形成具有指导意义。授之以鱼不如授之以渔，掌握设计原则才能更好的理解模式。</p>
+<p>S.O.L.I.D 设计原则是 <a href="https://sites.google.com/site/unclebobconsultingllc/" target="_blank" rel="noopener">Uncle Bob</a> 最早提出的，了解过设计模式的朋友应该耳熟能详：</p>
+<ol>
+<li><strong>S – Single Responsibility Principle</strong>（单一职责原则 SRP）</li>
+<li><strong>O – Open-Closed Principle</strong>（开放封闭原则 OCP）</li>
+<li><strong>L – Liskov Substitution Principle</strong>（里氏替换原则 LSP）</li>
+<li><strong>I – Interface Segregation Principle</strong>（接口分离原则 ISP）</li>
+<li><strong>D – Dependency Inversion Principle</strong>（依赖倒置原则 DIP）</li>
+</ol>
+<p>下面谈谈我对以上这些设计原则的理解：</p>
+<h3 id="S-单一职责原则-SRP"><a href="#S-单一职责原则-SRP" class="headerlink" title="S 单一职责原则 SRP"></a><strong>S 单一职责原则 SRP</strong></h3><blockquote>
+<p>A class should have only one reason to change<br>类发生更改的原因应该只有一个</p>
+</blockquote>
+<p>这个原则和 UNIX 设计哲学里面的「Do one thing and do it well 让每个程序只做好一件事」很像。</p>
+<p>让一个程序、类只做好一件事，当一个程序、类内部的功能过于繁复时，进行设计拆分独立成多个，并让每个部分保持独立性，只做好这部分既定的目标。</p>
+<h3 id="O-开放封闭原则-OCP"><a href="#O-开放封闭原则-OCP" class="headerlink" title="O 开放封闭原则 OCP"></a><strong>O 开放封闭原则 OCP</strong></h3><blockquote>
+<p>Software entities (classes, modules, functions, etc.) should be open for extension but closed for modification.<br>软件实体（类，模块，方法等等）应当对扩展开放，对修改关闭。</p>
+</blockquote>
+<p>对扩展进行开放表示应该在<strong>不破坏</strong>现有代码的情况下向添加新功能。对修改进行封闭表示<strong>不应该对现有功能进行重大更改</strong>，而这意味着大量的重构和回归测试。</p>
+<p>应当在不修改的前提下扩展。项目中新增的需求进行增量扩展新代码，而非破坏性的修改已有代码。</p>
+<h3 id="L-里氏替换原则-LSP"><a href="#L-里氏替换原则-LSP" class="headerlink" title="L 里氏替换原则 LSP"></a><strong>L 里氏替换原则 LSP</strong></h3><blockquote>
+<p>Subtypes must be substitutable for their base types.<br>派生类型必须可以替换它的基类型。 </p>
+</blockquote>
+<p>基类替换成子类后程序正常运行，想要做到这点需要做到子类在继承时不会修改任何关于基类抽象的方法和状态变量。推荐在子类中调用父类的公有方法来获取一些内部状态变量，而不是直接使用它。</p>
+<p>就比如这个经典的问题：父类<code>鸟</code>，拥有一个 <code>fly</code> 方法，而<code>鸵鸟</code>去继承了<code>鸟</code>，但是<code>鸵鸟</code>不会飞，就修改了 <code>fly</code> 方法。这时如果一个原来调用父类<code>鸟</code>可以正常运行的程序替换成<code>鸵鸟</code>就可能因为<code>fly</code>方法的修改出现问题。</p>
+<p>能出现修改父类原有抽象方法才能实现需求目标的子类，更应该审视这个继承关系是否正确，更多时候使用<strong>依赖、组合</strong>来替代继承关系。</p>
+<h3 id="I-接口分离原则-ISP"><a href="#I-接口分离原则-ISP" class="headerlink" title="I 接口分离原则 ISP"></a>I 接口分离原则 ISP</h3><blockquote>
+<p>Clients should not be forced to depend on methods they do not use.<br>不应该强迫客户依赖于它们不用的方法。</p>
+</blockquote>
+<p>接口分离原则的思想和单一职责原则有点相似，接口分离是面向接口抽象层，单一职责是面向实现层。</p>
+<p>避免单一接口内部过于复杂，需要拆分时就要及时拆分，而不应该要求类强制实现不需要的方法。</p>
+<p>接口这个概念虽然在 Javascript 中不存在，但是在 Typescript 中有着广泛的使用。</p>
+<h3 id="D-依赖倒置原则-DIP"><a href="#D-依赖倒置原则-DIP" class="headerlink" title="D 依赖倒置原则 DIP"></a>D 依赖倒置原则 DIP</h3><blockquote>
+<p>A. High-level modules should not depend on low-level modules.  Both should depend on abstractions.<br>高层模块不应该依赖于低层模块，二者都应该依赖于抽象</p>
+</blockquote>
+<blockquote>
+<p>B. Abstractions should not depend upon details.  Details should depend upon abstractions.<br>抽象不应该依赖于细节，细节应该依赖于抽象</p>
+</blockquote>
+<p>定义原文已经比较白话了，就是要面向接口编程，依赖抽象而不是具体实现。</p>
+<p>依赖倒置基于这个事实：<strong>相比于实现细节的多变性，抽象的内容要稳定的多</strong>。</p>
+<p>举个例子：</p>
+<p>一个高层类<code>Person</code>具有一个<code>read</code>方法，其依赖于低层类<code>Book</code>，<code>Book</code>中拥有一个方法<code>getContent</code>来获取文字；</p>
+<p>正常情况下<code>Person</code>实例化后，调用<code>read</code>传入实例化的<code>Book</code>，在执行<code>getContent</code>正常阅读出文字内容；</p>
+<p>而此时来了一个新的低层类<code>Newspaper</code>，因为<code>Person</code>在定义时已经规定依赖传入<code>Book</code>类型，就没法读取<code>Newspaper</code>；如果想读就要修改<code>Person</code>的依赖；</p>
+<p>解决方法，抽象出一个可读物接口<code>Interface Reader</code>，让<code>Class Book</code>和<code>class Newspaper</code>都实现它，同时<code>class Person</code>也依赖这个接口，就做到了解耦。</p>
+<h2 id="设计模式的分类"><a href="#设计模式的分类" class="headerlink" title="设计模式的分类"></a>设计模式的分类</h2><p>在《设计模式：可复用面向对象软件的基础》一书中定义了23种设计模式，同时根据其设计意图又可以分为三个大类：<strong>创建型</strong> 、<strong>结构型</strong>、<strong>行为型</strong>。</p>
+<h3 id="创建型模式-Creational-Pattern"><a href="#创建型模式-Creational-Pattern" class="headerlink" title="创建型模式 Creational Pattern"></a>创建型模式 Creational Pattern</h3><p>创建型模式提供创建对象的机制，抽象了实例化的过程，将对象的创建和创建的过程细节进行了分离。使结构更加清晰，并符合单一职责原则 SRP 的设计思路。</p>
+<p>其包含如下类型：</p>
+<ul>
+<li>单例模式（Singleton）</li>
+<li>工厂方法模式（Factory Method）</li>
+<li>抽象工厂模式（Abstract Factory）</li>
+<li>生成器模式（Builder）</li>
+<li>原型模式（Prototype）</li>
+</ul>
+<h3 id="结构型模式-Structural-Pattern"><a href="#结构型模式-Structural-Pattern" class="headerlink" title="结构型模式 Structural Pattern"></a>结构型模式 Structural Pattern</h3><p>结构型模式是介绍如何将类或对象结合在一起，组合成功能更强大的结构，从而实现一定的设计目标。类、对象之间怎样设计继承、依赖、组合关系直接影响到整体程序的健壮性、可维护性，结构型模式应用也相当广泛。</p>
+<p>其包含如下类型：</p>
+<ul>
+<li>适配器模式（Adapter）</li>
+<li>装饰器模式（Decorator）</li>
+<li>代理模式（Proxy）</li>
+<li>外观模式（Facade）</li>
+<li>桥接模式（Bridge）</li>
+<li>组合模式（Composite）</li>
+<li>享元模式（Flyweight）</li>
+</ul>
+<h3 id="行为型模式-Behavioral-Pattern"><a href="#行为型模式-Behavioral-Pattern" class="headerlink" title="行为型模式 Behavioral Pattern"></a>行为型模式 Behavioral Pattern</h3><p>行为型模式负责对象之间的沟通和职责划分，其除了关注结构以外，更关注他们之间的通信机制。通过行为型模式可以更加清晰的划分类、对象之间的职责，展现实例对象之间的作用交互。</p>
+<p>其包含如下类型：</p>
+<ul>
+<li>职责链模式（Chain of Responsibility）</li>
+<li>命令模式（Command）</li>
+<li>备忘录模式（Memento）</li>
+<li>迭代器模式（Iterator）</li>
+<li>中介者模式（Mediator）</li>
+<li>观察者模式（Observer）</li>
+<li>状态模式（State）</li>
+<li>策略模式（Strategy）</li>
+<li>模板方法模式（Template Method）</li>
+<li>访问者模式（Visitor）</li>
+<li>解释器模式（Interpreter）</li>
+</ul>
+<h3 id="部分常用设计模式"><a href="#部分常用设计模式" class="headerlink" title="部分常用设计模式"></a>部分常用设计模式</h3><p>一些设计模式在设计初衷面向的是 Java ，所以接下来的文章中我会结合 Typescript 回顾其中部分常用的设计模式。</p>
+<ul>
+<li>创建型：工厂模式、单例模式</li>
+<li>结构型：适配器模式、装饰模式、代理模式、外观模式</li>
+<li>行为模式：观察者、迭代器、状态、备忘录</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://www.cnblogs.com/TomXu/archive/2011/12/15/2288411.html" target="_blank" rel="noopener">深入理解JavaScript系列 - 汤姆大叔</a></li>
+<li><a href="https://medium.com/@cramirez92/s-o-l-i-d-the-first-5-priciples-of-object-oriented-design-with-javascript-790f6ac9b9fa" target="_blank" rel="noopener">S.O.L.I.D The first 5 principles of Object Oriented Design with JavaScript</a></li>
+<li><a href="http://c.biancheng.net/design_pattern/" target="_blank" rel="noopener">Java设计模式：23种设计模式全面解析</a></li>
+</ul>
+<h2 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h2><ul>
+<li><a href="/2019/03/22/typescript-design-pattern-2/">Typescript 重走常用设计模式（二）</a></li>
+<li><a href="/2019/03/22/typescript-design-pattern-3/">Typescript 重走常用设计模式（三）</a></li>
+</ul>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-next">
+            
+              <a href="/2018/12/03/「装机」解决机箱硬盘架共振问题/" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>PREV</span>
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">2019-03-22</span>
+            
+              <span class="post-tags">
+                <i class="iconfont icon-tags" title="标签 | tags"></i>
+                
+                <span class="span--tag">
+                  <a href="/tags/typescript/" title="查看 typescript 标签">
+                    #typescript
+                  </a>
+                </span>
+                
+                <span class="span--tag">
+                  <a href="/tags/javascript/" title="查看 javascript 标签">
+                    #javascript
+                  </a>
+                </span>
+                
+                <span class="span--tag">
+                  <a href="/tags/设计模式/" title="查看 设计模式 标签">
+                    #设计模式
+                  </a>
+                </span>
+                
+              </span>
+            
+            
+              <span class="post-categories">
+                <i class="iconfont icon-bookmark" title="类别 | categories"></i>
+                
+                <span class="span--category">
+                  <a href="/categories/Coding/" title="查看 Coding 分类">
+                    #Coding
+                  </a>
+                </span>
+                
+              </span>
+            
+          </div>
+          <div class="post-foot-prev">
+            
+              <a href="/2019/03/22/typescript-design-pattern-2/" target="_self">
+                <span>NEXT</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+    </div>
+    
+  <div class="post-catalog" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前面的话"><span class="toc-text">前面的话</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设计原则"><span class="toc-text">设计原则</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#S-单一职责原则-SRP"><span class="toc-text">S 单一职责原则 SRP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#O-开放封闭原则-OCP"><span class="toc-text">O 开放封闭原则 OCP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#L-里氏替换原则-LSP"><span class="toc-text">L 里氏替换原则 LSP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#I-接口分离原则-ISP"><span class="toc-text">I 接口分离原则 ISP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#D-依赖倒置原则-DIP"><span class="toc-text">D 依赖倒置原则 DIP</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设计模式的分类"><span class="toc-text">设计模式的分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建型模式-Creational-Pattern"><span class="toc-text">创建型模式 Creational Pattern</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#结构型模式-Structural-Pattern"><span class="toc-text">结构型模式 Structural Pattern</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#行为型模式-Behavioral-Pattern"><span class="toc-text">行为型模式 Behavioral Pattern</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#部分常用设计模式"><span class="toc-text">部分常用设计模式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相关文章"><span class="toc-text">相关文章</span></a></li></ol>
+    </div>
+  </div>
+
+  <!-- <script src="/js/catalog.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/js/catalog.js"></script>
+
+
+
+    
+      <div class="comments-container">
+        
+
+
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+
+  <div id="vcomments"></div>
+
+  <script>
+    new Valine({
+      el: '#vcomments',
+      appId: 'kUOr7QeM3HuECQcFmC2xKIxD-gzGzoHsz',
+      appKey: 'rkioF9XeiLygfxEhXSrKilPY',
+      placeholder: 'Welcome!',
+      avatar: 'retro'
+    })
+  </script>
+
+    <style>
+      .comments-container .v .vempty {
+        display: none!important;
+      }
+    </style>
+
+
+
+
+      </div>
+    
+  </div>
+
+  
+        <div class="footer">
+  <div class="social">
+    <ul>
+      
+        <li>
+          <a title="github" href="https://github.com/mtmzorro/">
+            <i class="iconfont icon-github"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="email" href="mtmzorro@foxmail.com">
+            <i class="iconfont icon-envelope"></i>
+          </a>
+        </li>
+      
+        <li>
+          <a title="微博" href="http://weibo.com/mtmzorro">
+            <i class="iconfont icon-weibo"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  
+    <div class="footer-more">
+      <a href="https://mtmzorro.com">Copyright © mTmzorro 2020</a>
+    </div>
+  
+    <div class="footer-more">
+      <a href="https://github.com/zchengsite/hexo-theme-oranges">Theme by Oranges | Powered by Hexo</a>
+    </div>
+  
+</div>
+
+      </div>
+
+      <div class="back-to-top hidden">
+  <a href="javascript: void(0)">
+    <i class="iconfont icon-chevronup"></i>
+  </a>
+</div>
+
+<!-- <script src="/js/backtotop.js"></script> -->
+<script src="https://cdn.jsdelivr.net/gh/mtmzorro/mtmzorro.github.io@master/js/backtotop.js"></script>
+
+
+    </div>
+  </body>
+</html>
